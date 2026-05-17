@@ -1,9 +1,14 @@
 # Agent Operating Principles
 
-These principles apply across the public skills in this repository. They are
-directional guardrails, not a replacement for model judgment. Use them to keep
-the agent aligned at the workflow level while leaving implementation details to
-the active model and the local repository context.
+These principles apply across the public skills in this repository. RigorPilot
+uses them as directional guardrails, not a replacement for model judgment. Use
+them to keep the agent aligned at the workflow level while leaving
+implementation details to the active model and the local repository context.
+
+For deep learning reproduction, improvement, exploration, experiment claims,
+method contributions, SOTA, baselines, ablations, training, or evaluation, also
+load `research-rigor-principles.md`. When the task depends on experiment
+details, load `deep-learning-experiment-principles.md` as needed.
 
 ## Think before acting
 
@@ -42,9 +47,12 @@ the active model and the local repository context.
 ## Apply freedom at the right level
 
 - Use high freedom for reasoning, code reading, implementation choices, and
-  adapting to the target repository.
+  adapting to the target repository, including literature synthesis and local
+  repository adaptation.
 - Use medium freedom for campaign schemas, output templates, and ranking
   heuristics where consistency helps review.
 - Use low freedom only for fragile contracts: public skill names, lane
-  boundaries, output directory names, status keys, and scientific safety checks.
-
+  boundaries, output directory names, status keys, comparability,
+  reproducibility, auditability, and scientific safety checks.
+- These principles must not reduce strong model capability. They should add
+  research judgment and audit awareness, not mechanical burden.

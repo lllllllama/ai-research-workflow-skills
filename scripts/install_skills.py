@@ -12,6 +12,8 @@ from typing import Iterable, List, Mapping
 
 SHARED_REFERENCE_FILES = [
     "agent-operating-principles.md",
+    "research-rigor-principles.md",
+    "deep-learning-experiment-principles.md",
 ]
 
 

@@ -30,6 +30,8 @@ ROOT_REQUIRED_FILES = [
     "scripts/validate_repo.py",
     "scripts/test_skill_registry.py",
     "references/agent-operating-principles.md",
+    "references/research-rigor-principles.md",
+    "references/deep-learning-experiment-principles.md",
     "references/skill-registry.json",
     "references/client-compatibility-policy.md",
     "references/trigger-boundary-policy.md",
