@@ -1,4 +1,10 @@
-# 🚀 ai-research-workflow-skills
+# RigorPilot Skills
+
+面向深度学习实验的科研优先 Agent Skills。
+
+RigorPilot 让 AI agent 以科研严谨性辅助深度学习研究：忠实复现、有意义地修改、公平比较、可复现实验证据，并审计每一次重要改动。
+
+> 不只是更高分数，而是有意义的深度学习科研推进。
 
 <p>
   <a href="./README.md">English</a> |
@@ -6,28 +12,65 @@
 </p>
 
 <p>
-  <img alt="trusted by default" src="https://img.shields.io/badge/lane-trusted%20by%20default-1f6feb?style=flat-square">
-  <img alt="explicit exploration" src="https://img.shields.io/badge/explore-explicit%20only-238636?style=flat-square">
-  <img alt="platforms" src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-0a7ea4?style=flat-square">
+  <img alt="research-first" src="https://img.shields.io/badge/research-first-1f6feb?style=flat-square">
+  <img alt="deep learning" src="https://img.shields.io/badge/deep-learning-238636?style=flat-square">
+  <img alt="reproducibility" src="https://img.shields.io/badge/reproducibility-auditable-0a7ea4?style=flat-square">
+  <img alt="explicit exploration" src="https://img.shields.io/badge/exploration-explicit%20only-8250df?style=flat-square">
+  <img alt="platforms" src="https://img.shields.io/badge/Windows%20%7C%20Linux-supported-6f42c1?style=flat-square">
   <img alt="skills" src="https://img.shields.io/badge/skills-11-8b949e?style=flat-square">
   <img alt="public skills" src="https://img.shields.io/badge/public%20skills-9-0969da?style=flat-square">
   <img alt="tests" src="https://img.shields.io/badge/tests-43%20scripts-8250df?style=flat-square">
   <img alt="clients" src="https://img.shields.io/badge/clients-Agent%20Skills%20%C2%B7%20Codex%20%C2%B7%20Claude%20Code-6f42c1?style=flat-square">
 </p>
 
-品牌说明：仓库对外品牌名已经统一为 `ai-research-workflow-skills`。如果 GitHub 仓库 slug 还没有迁移，请继续使用 `lllllllama/ai-paper-reproduction-skills` 作为 clone 和 `npx skills add` 的路径，直到 slug 迁移完成。
+品牌说明：本仓库正在从旧的 `ai-research-workflow-skills` 叙事迁移为 `RigorPilot Skills`。如果 GitHub 仓库 slug 还没有迁移，请继续使用 `lllllllama/ai-paper-reproduction-skills` 作为 clone 和 `npx skills add` 的路径，直到 slug 迁移完成。
 
 迁移说明：
+- 项目品牌：`ai-research-workflow-skills` -> `RigorPilot Skills`
+- 现有兼容 skill slug 会继续保留。
+- 现有安装命令在仓库 slug 迁移完成前仍可使用 legacy repository slug。
 - `ai-paper-reproduction` -> `ai-research-reproduction`
 - `research-explore` -> `ai-research-explore`
 
-这是一个面向深度学习研究工作流的 lane-aware skill 仓库。
+## RigorPilot 是什么
 
-> 🔒 默认走可信链路：复现、环境准备、分析、训练验证、调试。  
-> 🧪 只有研究者显式授权时，才进入 candidate-only 的探索链路。  
-> 🔗 同一套 `SKILL.md` 合同可复用于 Agent Skills、Codex、Claude Code。
+- 面向深度学习实验的科研优先 Agent Skills。
+- 帮助 AI agent 复现、改进、探索和审计深度学习研究工作。
+- 优先服务个人科研使用场景。
+- 重视科学含义、公平比较、可复现性、可解释性和协作者可控性。
+- 鼓励探索阶段的 meaningful novelty，但不夸大 novelty。
 
-本仓库遵循一个核心默认原则：`trusted by default`。
+## RigorPilot 不是什么
+
+- 不是普通 coding agent。
+- 不是刷分自动化框架。
+- 不是自动保证产生创新发现的系统。
+- 不是研究者判断的替代品。
+- 不是会削弱强模型能力的僵硬流程。
+
+## 五条科研严谨性原则
+
+1. 不盲目追分：分数提升必须有解释价值。
+2. 不轻易声称创新：novelty 必须有文献、代码或实验依据。
+3. 不破坏可比性：如果改变了评估条件，必须说明结果不可直接比较。
+4. 不隐藏工程修补：工程修补不能包装成方法贡献。
+5. 不让合作者失控：每次重要修改必须可审计、可回滚、可解释。
+
+详见 [references/research-rigor-principles.md](references/research-rigor-principles.md)。
+
+## Rigor 与 Novel
+
+Rigor 是底线。Novel 是探索目标。
+
+创新性和意义在被文献对照、消融实验和公平比较支持之前，只能作为假设，不能作为结论。
+
+RigorPilot 不应降低强模型本身的能力。它应该提供科研方向、判断标准和审计意识，而不是用过细流程限制模型推理、实现和探索能力。最差情况下，使用 RigorPilot 的体验也应接近未使用 skill；它不应让任务更难、更慢、更机械，或让强模型因为规则负担而表现变差。
+
+## 深度学习定位
+
+RigorPilot 主要面向深度学习研究仓库：README 命令、环境配置、数据、权重、checkpoint、训练、评估、指标、日志、baseline、SOTA 表和消融实验都会影响科研含义。
+
+本仓库仍保留一个兼容性默认原则：`trusted by default`。
 
 - 模糊请求默认进入 trusted lane。
 - 探索必须显式授权。
@@ -161,17 +204,19 @@ PowerShell 补充说明：
 
 ## 🎯 入口选择
 
-| 如果你想要… | 使用 |
-|---|---|
-| 从 README 出发，端到端复现一个仓库 | `ai-research-reproduction` |
-| 在 `current_research` 之上，基于冻结的 task / eval / SOTA 运行第三场景 campaign | `ai-research-explore` |
-| 只做只读分析，不改代码、不跑重任务 | `analyze-project` |
-| 梳理环境、数据集、checkpoint、缓存等前置条件 | `env-and-assets-bootstrap` |
-| 保守地执行 README 中记录的 inference 或 evaluation 命令 | `minimal-run-and-audit` |
-| 保守地启动或恢复训练 | `run-train` |
-| 安全诊断 traceback 或失败的训练 / 推理流程 | `safe-debug` |
-| 只做隔离式 exploratory code 改动 | `explore-code` |
-| 只做隔离式 exploratory run 试验 | `explore-run` |
+RigorPilot mode 会映射到当前兼容的 skill slug：
+
+| 如果你想要… | RigorPilot mode | 当前 skill slug |
+|---|---|---|
+| 从 README 命令出发复现一个深度学习仓库 | Reproduce | `ai-research-reproduction` |
+| 在 current research 之上探索有意义、可能 novel 的 idea | Explore | `ai-research-explore` |
+| 在保持可比性的前提下改进 baseline | Improve | `ai-research-explore`、`explore-code`、`explore-run` |
+| 审计改动、科学含义和可比性 | Audit | `analyze-project`、`safe-debug`、generated reports |
+| 只分析仓库结构，不编辑 | Analyze | `analyze-project` |
+| 准备环境、数据集、权重和缓存假设 | Setup | `env-and-assets-bootstrap` |
+| 保守执行已记录的 evaluation 或 inference | Run | `minimal-run-and-audit` |
+| 保守启动或验证训练 | Train | `run-train` |
+| 安全调试失败 | Debug | `safe-debug` |
 
 内置 helper skills：
 
@@ -257,7 +302,7 @@ flowchart TD
 
 ## 🧠 第三场景 Explore 流程
 
-`ai-research-explore` 面向第三场景：研究者已经冻结 task family、dataset、evaluation method，并且给出了 SOTA 参考；随后显式授权 AI 在 `current_research` 上进行受约束、可审计、candidate-only 的探索。
+`ai-research-explore` 面向第三场景：研究者已经冻结 task family、dataset、evaluation method，并且给出了 SOTA 参考；随后显式授权 AI 在 `current_research` 上进行受约束、可审计、candidate-only 的探索。按 RigorPilot 的说法，这是 meaningful and potentially novel 的候选研究工作，不是已经验证的 novelty。
 
 ```mermaid
 flowchart LR
@@ -327,6 +372,21 @@ flowchart LR
 | `debug_outputs/` | 安全调试诊断与 patch plan |
 | `sources/` | free-first research lookup 记录，包含 `sources/records/`、稳定命名、受限 provider 解析、repo-local extraction、可审计索引 |
 | `explore_outputs/` | exploratory changeset、idea gate、experiment plan、experiment manifest、split static/runtime smoke reporting、ledger、top runs summary |
+
+## 建议的科研证据体系
+
+这些是推荐的 evidence concepts，不要求现有脚本立刻全部生成：
+
+| Artifact | 含义 |
+|---|---|
+| `SCIENTIFIC_CHANGELOG.md` | 记录改了什么、为什么改、是否影响科学含义、是否仍可比较。 |
+| `COMPARABILITY_REPORT.md` | 说明结果是否仍能与 README、论文、baseline 或 SOTA 参考比较。 |
+| `REPRODUCIBILITY_NOTES.md` | 记录命令、配置、seed、checkpoint、数据集、环境假设和已知缺口。 |
+| `NOVELTY_CLAIM.md` | 将可能的创新写成假设，列出支持证据、缺失证据、限制和所需消融。 |
+| `ABLATION_PLAN.md` | 说明需要隔离哪些变量才能验证候选改动的效果。 |
+| `EXPERIMENT_LEDGER.md` | 记录 run、指标、命令、artifact、变更文件和证据状态。 |
+
+现有的 `analysis_outputs/`、`sources/`、`explore_outputs/`、`repro_outputs/`、`train_outputs/`、`debug_outputs/` 继续兼容。RigorPilot 后续可以逐步把现有 artifact 映射到这些科研证据概念上。
 
 ## 🧩 Campaign 输入
 
@@ -467,6 +527,9 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 
 ## 📚 参考文档
 
+- Research rigor principles: [references/research-rigor-principles.md](references/research-rigor-principles.md)
+- Deep learning experiment principles: [references/deep-learning-experiment-principles.md](references/deep-learning-experiment-principles.md)
+- Shared operating principles: [references/agent-operating-principles.md](references/agent-operating-principles.md)
 - Skill registry: [references/skill-registry.json](references/skill-registry.json)
 - Explore variant spec: [references/explore-variant-spec.md](references/explore-variant-spec.md)
 - Explore module roadmap: [references/explore-module-roadmap.md](references/explore-module-roadmap.md)
@@ -487,4 +550,4 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 
 ## 🧱 仓库定位
 
-这是一个强调安全性、可观测性、可复用性和边界清晰度的 lane-aware 深度学习研究技能仓库。
+RigorPilot Skills 是面向深度学习实验的科研优先 skill 仓库，核心关注科学含义、可比性、可复现性、协作者可控性和可审计的工作边界。

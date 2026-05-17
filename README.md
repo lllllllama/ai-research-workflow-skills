@@ -1,4 +1,12 @@
-# 🚀 ai-research-workflow-skills
+# RigorPilot Skills
+
+Research-first Agent Skills for Deep Learning Experiments.
+
+RigorPilot helps AI agents reproduce, improve, and explore deep learning
+research projects with scientific rigor: meaningful changes, fair comparison,
+reproducible evidence, and auditable modifications.
+
+> Not just higher scores. Meaningful deep learning research progress.
 
 <p>
   <a href="./README.md">English</a> |
@@ -6,28 +14,72 @@
 </p>
 
 <p>
-  <img alt="trusted by default" src="https://img.shields.io/badge/lane-trusted%20by%20default-1f6feb?style=flat-square">
-  <img alt="explicit exploration" src="https://img.shields.io/badge/explore-explicit%20only-238636?style=flat-square">
-  <img alt="platforms" src="https://img.shields.io/badge/platforms-Windows%20%7C%20Linux-0a7ea4?style=flat-square">
+  <img alt="research-first" src="https://img.shields.io/badge/research-first-1f6feb?style=flat-square">
+  <img alt="deep learning" src="https://img.shields.io/badge/deep-learning-238636?style=flat-square">
+  <img alt="reproducibility" src="https://img.shields.io/badge/reproducibility-auditable-0a7ea4?style=flat-square">
+  <img alt="explicit exploration" src="https://img.shields.io/badge/exploration-explicit%20only-8250df?style=flat-square">
+  <img alt="platforms" src="https://img.shields.io/badge/Windows%20%7C%20Linux-supported-6f42c1?style=flat-square">
   <img alt="skills" src="https://img.shields.io/badge/skills-11-8b949e?style=flat-square">
   <img alt="public skills" src="https://img.shields.io/badge/public%20skills-9-0969da?style=flat-square">
   <img alt="tests" src="https://img.shields.io/badge/tests-43%20scripts-8250df?style=flat-square">
   <img alt="clients" src="https://img.shields.io/badge/clients-Agent%20Skills%20%C2%B7%20Codex%20%C2%B7%20Claude%20Code-6f42c1?style=flat-square">
 </p>
 
-Brand note: the repository brand is now `ai-research-workflow-skills`. If the GitHub repo slug has not been migrated yet, keep using `lllllllama/ai-paper-reproduction-skills` for clone and `npx skills add` commands until the slug migration is complete.
+Brand note: this repository is being repositioned as `RigorPilot Skills`. If
+the GitHub repo slug has not been migrated yet, keep using
+`lllllllama/ai-paper-reproduction-skills` for clone and `npx skills add`
+commands until the slug migration is complete.
 
 Migration note:
+- Project brand: `ai-research-workflow-skills` -> `RigorPilot Skills`
+- Existing compatible skill slugs remain available.
+- Existing install commands may still use the legacy repository slug until migration is complete.
 - `ai-paper-reproduction` -> `ai-research-reproduction`
 - `research-explore` -> `ai-research-explore`
 
-Lane-aware skill repository for deep learning research workflows.
+## What RigorPilot Is
 
-> 🔒 Trusted for reproduction, setup, analysis, training verification, and debugging.  
-> 🧪 Explore only when the researcher explicitly authorizes candidate-only work.  
-> 🔗 Share the same `SKILL.md` contracts across Agent Skills, Codex, and Claude Code.
+- Research-first Agent Skills for deep learning experiments.
+- It helps AI agents reproduce, improve, explore, and audit deep learning research work.
+- It is designed for personal research use first.
+- It values scientific meaning, fair comparison, reproducibility, explainability, and collaborator control.
+- It encourages meaningful novelty during exploration, but does not overclaim novelty.
 
-This repository is built around one default rule: `trusted by default`.
+## What RigorPilot Is Not
+
+- Not a generic coding agent.
+- Not a score-chasing automation framework.
+- Not a guarantee of novel discoveries.
+- Not a replacement for researcher judgment.
+- Not a rigid workflow that should weaken strong models.
+
+## Core Principles
+
+1. Do not chase scores blindly.
+2. Do not claim novelty lightly.
+3. Do not break comparability silently.
+4. Do not disguise engineering fixes as research contributions.
+5. Do not leave collaborators out of control.
+
+See [references/research-rigor-principles.md](references/research-rigor-principles.md).
+
+## Rigor and Novelty
+
+Rigor is the baseline. Novel is the aspiration.
+
+Novelty and significance remain hypotheses until supported by literature
+contrast, ablation evidence, and fair comparison.
+
+RigorPilot should add research judgment and audit awareness without making
+strong models slower, more mechanical, or less capable.
+
+## Deep Learning Focus
+
+RigorPilot is built for deep learning research repositories where README
+commands, environment setup, data, weights, checkpoints, training, evaluation,
+metrics, logs, baselines, SOTA tables, and ablations all matter.
+
+This repository is still built around one compatibility rule: `trusted by default`.
 
 - Ambiguous requests route to the trusted lane.
 - Exploration requires explicit authorization.
@@ -162,17 +214,19 @@ PowerShell note:
 
 ## 🎯 Choose an Entry Point
 
-| If you want to... | Use |
-|---|---|
-| Reproduce a repository end-to-end from the README | `ai-research-reproduction` |
-| Run a third-scenario campaign on top of `current_research` with frozen task, eval, and SOTA inputs | `ai-research-explore` |
-| Analyze the repository without editing or running heavy jobs | `analyze-project` |
-| Prepare environment, dataset, checkpoint, and cache assumptions | `env-and-assets-bootstrap` |
-| Run a documented inference or evaluation command conservatively | `minimal-run-and-audit` |
-| Start or resume documented training conservatively | `run-train` |
-| Diagnose a traceback or failed training or inference run safely | `safe-debug` |
-| Make isolated exploratory code changes only | `explore-code` |
-| Run isolated exploratory trials only | `explore-run` |
+RigorPilot modes map to the current compatible skill slugs:
+
+| If you want to... | RigorPilot mode | Current skill slug |
+|---|---|---|
+| Reproduce a deep learning repository from README commands | Reproduce | `ai-research-reproduction` |
+| Explore meaningful and potentially novel ideas on top of current research | Explore | `ai-research-explore` |
+| Improve a baseline while preserving comparability | Improve | `ai-research-explore`, `explore-code`, `explore-run` |
+| Audit changes, scientific meaning, and comparability | Audit | `analyze-project`, `safe-debug`, generated reports |
+| Analyze repository structure without editing | Analyze | `analyze-project` |
+| Prepare environment, datasets, weights, and cache assumptions | Setup | `env-and-assets-bootstrap` |
+| Run documented evaluation or inference conservatively | Run | `minimal-run-and-audit` |
+| Start or verify training conservatively | Train | `run-train` |
+| Debug a failure safely | Debug | `safe-debug` |
 
 Bundled helper skills:
 
@@ -263,7 +317,8 @@ flowchart TD
 `ai-research-explore` is optimized for the third scenario: the researcher has
 already frozen the task family, dataset, evaluation method, and provided SOTA
 references, then explicitly authorizes candidate-only exploration on top of
-`current_research`.
+`current_research`. In RigorPilot terms, this is meaningful and potentially
+novel candidate work, not verified novelty.
 
 ```mermaid
 flowchart LR
@@ -336,6 +391,25 @@ Coverage notes:
 | `debug_outputs/` | Safe debug diagnosis and patch plan |
 | `sources/` | Free-first research lookup records with `sources/records/`, stable names, bounded provider resolution, repo-local extraction, and an auditable index |
 | `explore_outputs/` | Exploratory changeset, idea gate, experiment plan, experiment manifest, split static/runtime smoke reporting, ledger, and ranked run summary |
+
+## Suggested Research Evidence
+
+These are recommended evidence concepts, not files that every current script
+must generate immediately:
+
+| Artifact | Meaning |
+|---|---|
+| `SCIENTIFIC_CHANGELOG.md` | Records what changed, why it changed, whether it affects scientific meaning, and whether it remains comparable. |
+| `COMPARABILITY_REPORT.md` | Explains whether results can still be compared to README, paper, baseline, or SOTA references. |
+| `REPRODUCIBILITY_NOTES.md` | Records commands, configs, seeds, checkpoints, datasets, environment assumptions, and known gaps. |
+| `NOVELTY_CLAIM.md` | States possible novelty as a hypothesis, supporting evidence, missing evidence, limitations, and required ablations. |
+| `ABLATION_PLAN.md` | Describes what needs to be isolated to validate the candidate change. |
+| `EXPERIMENT_LEDGER.md` | Records runs, metrics, commands, artifacts, changed files, and evidence status. |
+
+Existing outputs such as `analysis_outputs/`, `sources/`, `explore_outputs/`,
+`repro_outputs/`, `train_outputs/`, and `debug_outputs/` remain compatible.
+RigorPilot may gradually map existing artifacts to these research evidence
+concepts.
 
 ## 🧩 Campaign Inputs
 
@@ -480,6 +554,9 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 
 ## 📚 References
 
+- Research rigor principles: [references/research-rigor-principles.md](references/research-rigor-principles.md)
+- Deep learning experiment principles: [references/deep-learning-experiment-principles.md](references/deep-learning-experiment-principles.md)
+- Shared operating principles: [references/agent-operating-principles.md](references/agent-operating-principles.md)
 - Skill registry: [references/skill-registry.json](references/skill-registry.json)
 - Explore variant spec: [references/explore-variant-spec.md](references/explore-variant-spec.md)
 - Explore module roadmap: [references/explore-module-roadmap.md](references/explore-module-roadmap.md)
@@ -500,4 +577,6 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 
 ## 🧱 Scope
 
-This is a lane-aware deep learning research skill repository optimized for safety, observability, reuse, and auditable workflow boundaries.
+RigorPilot Skills is a research-first skill repository for deep learning
+experiments, optimized for scientific meaning, comparability, reproducibility,
+collaborator control, and auditable workflow boundaries.
