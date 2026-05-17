@@ -1,6 +1,6 @@
 ---
 name: ai-research-reproduction
-description: Main orchestrator for README-first AI repo reproduction. Use when the user wants an end-to-end, minimal-trustworthy reproduction flow that reads the repository first, selects the smallest documented inference or evaluation target, coordinates intake, setup, trusted execution, optional trusted training, optional repository analysis, and optional paper-gap resolution, enforces conservative patch rules, records evidence assumptions deviations and human decision points, and writes the standardized `repro_outputs/` bundle. Do not use for paper summary, generic environment setup, isolated repo scanning, standalone command execution, silent protocol changes, or broad research assistance outside repository-grounded reproduction.
+description: RigorPilot reproduce-mode orchestrator for README-first deep learning repository reproduction. Use when the user wants an end-to-end, minimal-trustworthy flow that reads the repository first, selects the smallest documented inference or evaluation target, coordinates intake, setup, trusted execution, optional trusted training, optional repository analysis, and optional paper-gap resolution, enforces conservative patch rules, records evidence assumptions deviations and human decision points, and writes the standardized `repro_outputs/` bundle. Do not use for paper summary, generic environment setup, isolated repo scanning, standalone command execution, silent protocol changes, score chasing, or broad research assistance outside repository-grounded reproduction.
 ---
 
 # ai-research-reproduction
@@ -10,10 +10,16 @@ description: Main orchestrator for README-first AI repo reproduction. Use when t
 Use this as the trusted-lane orchestrator for README-first AI repository
 reproduction. The skill guides the agent toward a minimal trustworthy run with
 auditable evidence; it should not micromanage implementation details that the
-model can infer from the repository.
+model can infer from the repository. Reproduction is not "make it run by
+changing anything"; it means faithfully reading the README, environment,
+weights, datasets, and documented commands, then recording results and
+deviations.
 
 Start from the shared operating principles in
-`../../references/agent-operating-principles.md`.
+`../../references/agent-operating-principles.md`, then load
+`../../references/research-rigor-principles.md` and
+`../../references/deep-learning-experiment-principles.md` when scientific
+meaning, comparability, or experiment details are at stake.
 
 ## Fit
 
@@ -71,6 +77,9 @@ auditable:
 
 - Try command-line arguments, environment variables, path fixes, dependency
   version fixes, or dependency-file fixes before code changes.
+- Reproduction fixes are allowed when needed, but they must not be hidden. State
+  what changed, why it was necessary, whether it changes scientific meaning,
+  and whether it affects comparability with the paper, README, or baseline.
 - Avoid changing model architecture, core inference semantics, training logic,
   loss functions, or experiment meaning.
 - If repository files must change, create a branch named
@@ -104,6 +113,10 @@ Use the templates under `assets/` and the field rules in
 ## Reference Loading
 
 - Load `references/language-policy.md` when writing human-readable outputs.
+- Load `../../references/research-rigor-principles.md` before making
+  comparability, contribution, or research-result claims.
+- Load `../../references/deep-learning-experiment-principles.md` when dataset,
+  split, metric, checkpoint, training, or evaluation details matter.
 - Load `references/research-safety-principles.md` before protocol-sensitive
   decisions.
 - Load `references/patch-policy.md` before modifying repository files.

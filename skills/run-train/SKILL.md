@@ -1,6 +1,6 @@
 ---
 name: run-train
-description: Trusted-lane training execution skill for deep learning research repositories. Use when a documented or selected training command should be run conservatively for startup verification, short-run verification, full kickoff, or resume, with status, checkpoint, and metric capture written to standardized `train_outputs/`. Do not use for environment setup, exploratory sweeps, speculative idea implementation, or end-to-end orchestration.
+description: RigorPilot trusted training execution skill for deep learning research repositories. Use when a documented or selected training command should be run conservatively for startup verification, short-run verification, full kickoff, or resume, with command, config, seed, log, checkpoint, status, and metric evidence written to standardized `train_outputs/`. Do not use for environment setup, exploratory sweeps, speculative idea implementation, or end-to-end orchestration.
 ---
 
 # run-train
@@ -29,6 +29,8 @@ to the model.
 - It does not choose the overall research goal on its own.
 - It does not own exploratory branching or speculative code adaptation.
 - It should record partial, blocked, resumed, and kicked-off states clearly.
+- It should preserve reproducibility context such as configs, seeds,
+  checkpoints, logs, metrics, and runtime assumptions when available.
 
 ## Input expectations
 
@@ -46,4 +48,4 @@ to the model.
 
 ## Notes
 
-Use `references/training-policy.md`, `scripts/run_training.py`, and `scripts/write_outputs.py`.
+Use `references/training-policy.md`, `../../references/deep-learning-experiment-principles.md`, `scripts/run_training.py`, and `scripts/write_outputs.py`.

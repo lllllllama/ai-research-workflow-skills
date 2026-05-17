@@ -1,6 +1,6 @@
 ---
 name: ai-research-explore
-description: Explore-lane end-to-end orchestrator for the third research scenario: the researcher has already chosen the task family, dataset, benchmark, evaluation method, and provided SOTA references, and wants candidate-only exploration on top of `current_research` with auditable repo understanding, idea gating, and governed experiments written to `explore_outputs/`. Do not use for README-first trusted reproduction, open-ended direction finding, narrow code-only or run-only exploration, passive repo analysis, or implicit experimentation.
+description: RigorPilot explore-mode orchestrator for meaningful and potentially novel deep learning research candidates: use when the researcher has chosen the task family, dataset, benchmark, evaluation method, provided SOTA references, and wants candidate-only exploration on top of `current_research` with auditable repo understanding, idea gating, fair comparison, and governed experiments written to `explore_outputs/`. Do not use for README-first trusted reproduction, open-ended direction finding, narrow code-only or run-only exploration, passive repo analysis, verified novelty claims, or implicit experimentation.
 ---
 
 # ai-research-explore
@@ -9,12 +9,18 @@ description: Explore-lane end-to-end orchestrator for the third research scenari
 
 Use this as the explore-lane orchestrator after the researcher explicitly
 authorizes candidate-only work on top of a durable `current_research` anchor.
-The skill governs research exploration; it does not promise autonomous
-discovery, global benchmark completeness, novelty proof, or trusted reproduction
-success.
+In RigorPilot terms, Explore is for meaningful and potentially novel deep
+learning research candidates while preserving scientific rigor, comparability,
+reproducibility, and auditable collaboration. Novelty and significance remain
+hypotheses before literature contrast, ablation evidence, and fair comparison.
+The skill does not promise autonomous discovery, global benchmark completeness,
+novelty proof, or trusted reproduction success.
 
 Start from the shared operating principles in
-`../../references/agent-operating-principles.md`.
+`../../references/agent-operating-principles.md`, then load
+`../../references/research-rigor-principles.md` for research claims and
+`../../references/deep-learning-experiment-principles.md` when experiment
+details affect comparability or reproducibility.
 
 ## Fit
 
@@ -52,8 +58,10 @@ human checkpoint.
    SOTA reference, and budget before candidate work.
 4. Build only the repo-understanding artifacts needed for the current campaign,
    usually through `analyze-project`.
-5. Run bounded, cache-first source lookup when source support matters; treat it
-   as source resolution, not an open-ended literature search.
+5. Run bounded, cache-first source lookup when source support matters; prefer
+   local curated literature such as Zotero if available, then seed sources,
+   repo-local locators, public locators, or optional web lookup. Treat lookup as
+   source resolution, not an open-ended literature search.
 6. Preserve researcher-provided ideas, optionally add a small bounded set of
    single-variable seed ideas, and rank ideas with explicit gates and score
    breakdowns.
@@ -104,6 +112,10 @@ schema and artifact expectations.
   present or the user asks for third-scenario campaign governance.
 - Load `../../references/explore-variant-spec.md` for run-level variant matrix
   details.
+- Load `../../references/research-rigor-principles.md` before making novelty,
+  contribution, SOTA, or comparability statements.
+- Load `../../references/deep-learning-experiment-principles.md` when training,
+  evaluation, baseline, ablation, metric, checkpoint, or dataset details matter.
 - Use `scripts/orchestrate_explore.py` and `scripts/write_outputs.py` for the
   existing deterministic artifact workflow.
 

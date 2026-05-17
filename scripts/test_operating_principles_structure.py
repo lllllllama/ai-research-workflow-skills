@@ -8,6 +8,8 @@ from pathlib import Path
 
 
 PUBLIC_PRINCIPLES_REF = "../../references/agent-operating-principles.md"
+RESEARCH_RIGOR_REF = "../../references/research-rigor-principles.md"
+DL_EXPERIMENT_REF = "../../references/deep-learning-experiment-principles.md"
 MAIN_SKILL_LIMITS = {
     "ai-research-reproduction": 130,
     "ai-research-explore": 125,
@@ -31,6 +33,34 @@ def main() -> int:
     ]:
         if phrase not in principles:
             failures.append(f"agent-operating-principles.md missing `{phrase}`")
+    for phrase in [
+        "RigorPilot",
+        "research-rigor-principles.md",
+        "deep-learning-experiment-principles.md",
+        "must not reduce strong model capability",
+    ]:
+        if phrase not in principles:
+            failures.append(f"agent-operating-principles.md missing RigorPilot wiring phrase `{phrase}`")
+
+    research_rigor = (repo_root / "references" / "research-rigor-principles.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Do not chase scores blindly",
+        "Do not claim novelty lightly",
+        "Novelty and significance remain hypotheses",
+        "Non-degradation Principle",
+    ]:
+        if phrase not in research_rigor:
+            failures.append(f"research-rigor-principles.md missing `{phrase}`")
+
+    dl_principles = (repo_root / "references" / "deep-learning-experiment-principles.md").read_text(encoding="utf-8")
+    for phrase in [
+        "Preserve baseline meaning",
+        "Preserve evaluation protocol",
+        "Record experiment context",
+        "not a rigid checklist",
+    ]:
+        if phrase not in dl_principles:
+            failures.append(f"deep-learning-experiment-principles.md missing `{phrase}`")
 
     for name in public_names:
         skill_text = (repo_root / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
@@ -42,6 +72,12 @@ def main() -> int:
         line_count = len(skill_text.splitlines())
         if line_count > limit:
             failures.append(f"{name} has {line_count} lines, expected <= {limit}")
+
+    for name in ["ai-research-reproduction", "ai-research-explore"]:
+        skill_text = (repo_root / "skills" / name / "SKILL.md").read_text(encoding="utf-8")
+        for ref in [RESEARCH_RIGOR_REF, DL_EXPERIMENT_REF]:
+            if ref not in skill_text:
+                failures.append(f"{name} does not link to {ref}")
 
     explore_text = (repo_root / "skills" / "ai-research-explore" / "SKILL.md").read_text(encoding="utf-8")
     for overfit_heading in ["## Variant Spec Hints", "## Ranking Semantics"]:
@@ -58,8 +94,20 @@ def main() -> int:
         failures.append("research_campaign optional fields are not clearly downgraded from required")
 
     readme = (repo_root / "README.md").read_text(encoding="utf-8")
-    if "Lifecycle View" not in readme or "agent-operating-principles.md" not in readme:
-        failures.append("README.md must describe lifecycle routing and shared principles")
+    for phrase in [
+        "RigorPilot Skills",
+        "Research-first Agent Skills for Deep Learning Experiments",
+        "Suggested Research Evidence",
+        "Lifecycle View",
+        "agent-operating-principles.md",
+    ]:
+        if phrase not in readme:
+            failures.append(f"README.md missing `{phrase}`")
+
+    readme_zh = (repo_root / "README.zh-CN.md").read_text(encoding="utf-8")
+    for phrase in ["RigorPilot Skills", "不只是更高分数", "建议的科研证据体系"]:
+        if phrase not in readme_zh:
+            failures.append(f"README.zh-CN.md missing `{phrase}`")
 
     print(f"ok: {not failures}")
     print(f"public_skills: {len(public_names)}")
@@ -71,4 +119,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-

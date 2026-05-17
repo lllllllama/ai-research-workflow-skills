@@ -1,6 +1,6 @@
 # Routing Policy
 
-This repository uses explicit research lanes to keep skill routing predictable and safe.
+This repository uses RigorPilot modes plus explicit research lanes to keep skill routing predictable and safe.
 
 ## Default stance
 
@@ -17,16 +17,16 @@ implementation sequence.
 
 Route by the user's current lifecycle need before choosing a concrete skill:
 
-| Lifecycle need | Preferred skill |
-|---|---|
-| Understand a repository without heavy execution | `analyze-project` |
-| Reproduce a README-documented repository end to end | `ai-research-reproduction` |
-| Prepare environment, assets, checkpoints, or caches | `env-and-assets-bootstrap` |
-| Run documented inference or evaluation | `minimal-run-and-audit` |
-| Start, resume, or verify training | `run-train` |
-| Diagnose an active research-code failure | `safe-debug` |
-| Explore candidates on top of `current_research` | `ai-research-explore`, `explore-code`, or `explore-run` |
-| Report or package evidence | the skill that owns the active output directory |
+| Lifecycle need | RigorPilot mode | Preferred skill |
+|---|---|---|
+| Understand a repository without heavy execution | Analyze | `analyze-project` |
+| Reproduce a README-documented repository end to end | Reproduce | `ai-research-reproduction` |
+| Prepare environment, assets, checkpoints, or caches | Setup | `env-and-assets-bootstrap` |
+| Run documented inference or evaluation | Run | `minimal-run-and-audit` |
+| Start, resume, or verify training | Train | `run-train` |
+| Diagnose an active research-code failure | Debug | `safe-debug` |
+| Explore candidates on top of `current_research` | Explore / Improve | `ai-research-explore`, `explore-code`, or `explore-run` |
+| Report or package evidence | Audit | the skill that owns the active output directory |
 
 ## Trusted lane
 
@@ -60,6 +60,7 @@ Traits:
 Explore-lane skills are for:
 
 - end-to-end exploratory work on top of `current_research`
+- meaningful and potentially novel candidate hypotheses
 - broad-sweep experiments
 - low-cost speculative variants
 - isolated branch or worktree modifications
@@ -81,6 +82,8 @@ The explore lane follows a two-loop rhythm:
 
 This is not a never-stop autonomous research policy. Stop at blockers, missing
 anchors, unclear scientific meaning, exhausted budget, or human checkpoints.
+Novelty and significance remain hypotheses until supported by literature
+contrast, ablation evidence, and fair comparison.
 
 Explore-lane requests should usually contain signals such as:
 

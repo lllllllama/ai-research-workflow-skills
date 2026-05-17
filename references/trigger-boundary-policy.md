@@ -4,9 +4,9 @@ This repository depends on clear trigger boundaries because multiple orchestrato
 
 ## Main rule
 
-`ai-research-reproduction` should trigger only for end-to-end README-first AI repo reproduction requests.
+`ai-research-reproduction` should trigger only for end-to-end README-first AI repo reproduction requests, the RigorPilot Reproduce mode.
 
-`ai-research-explore` should trigger only for explicit end-to-end exploration on top of `current_research`.
+`ai-research-explore` should trigger only for explicit end-to-end exploration on top of `current_research`, the RigorPilot Explore mode for candidate hypotheses rather than verified novelty.
 
 Narrower skills should trigger only for explicitly narrower requests:
 
@@ -45,6 +45,7 @@ This matters because the front matter is the strongest pre-trigger signal.
 - `ai-research-explore` firing on narrow code-only exploration
 - `ai-research-explore` firing on narrow run-only exploration
 - `ai-research-explore` firing on ambiguous "improve this" prompts without explicit exploratory authorization
+- any explore skill presenting novelty, contribution, SOTA, or trusted-baseline claims without evidence support
 - `repo-intake-and-plan` firing on environment-only requests
 - `env-and-assets-bootstrap` firing on repo scan prompts
 - `minimal-run-and-audit` firing before a target command exists

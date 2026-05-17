@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use this skill only when exploratory work has been explicitly authorized on top of `current_research`.
+Use this skill only when exploratory work has been explicitly authorized on top of `current_research`. In RigorPilot terms, the goal is meaningful and potentially novel candidate work, not verified novelty.
 
 ## Requirements
 
@@ -15,6 +15,7 @@ Use this skill only when exploratory work has been explicitly authorized on top 
 - require source-backed idea cards before transplant-style implementation planning
 - keep patch plans minimal, reversible, and auditable
 - keep research lookup free-first and provider-optional; missing external keys must not block the flow
+- prefer local curated literature, including Zotero when available, before broader lookup, without requiring a provider
 - treat `seed_only` lookup records as weak evidence only
 - distinguish `external_provider`, `parsed_locator`, `repo_local_extracted`, and `seed_only` evidence in downstream ranking and support summaries
 
@@ -22,6 +23,7 @@ Use this skill only when exploratory work has been explicitly authorized on top 
 
 - implicit experimentation
 - claiming exploratory gains as trusted reproduction success
+- claiming novelty, contribution, or SOTA superiority before literature contrast, ablation evidence, and fair comparison
 - requiring non-bundled skills to complete the workflow
 - using this skill for narrow code-only or run-only asks
 - open-ended scientific brainstorming without a frozen campaign anchor

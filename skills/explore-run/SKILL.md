@@ -1,6 +1,6 @@
 ---
 name: explore-run
-description: Explore-lane experimental execution skill for deep learning research repositories. Use when the researcher explicitly authorizes exploratory runs such as small-subset validation, short-cycle guess-and-check, batch sweeps, idle-GPU search, or quick transfer-learning trials, with results summarized in `explore_outputs/`. Do not use for end-to-end exploration orchestration on top of `current_research`, trusted baseline execution, conservative training verification, default routing, or implicit experimentation.
+description: RigorPilot explore-run skill for bounded exploratory evidence in deep learning research repositories. Use when the researcher explicitly authorizes exploratory runs such as small-subset validation, short-cycle guess-and-check, batch sweeps, idle-GPU search, or quick transfer-learning trials, with fair-comparison caveats and no-overclaim summaries in `explore_outputs/`. Do not use for end-to-end exploration orchestration on top of `current_research`, trusted baseline execution, conservative training verification, default routing, verified SOTA claims, or implicit experimentation.
 ---
 
 # explore-run
@@ -28,6 +28,8 @@ candidate run planning while preserving model judgment about the active repo.
 - It may hand off actual command execution to `minimal-run-and-audit` or `run-train`.
 - It should keep experiment state isolated from the trusted baseline.
 - It should prefer small-subset and short-cycle checks before heavier exploratory runs.
+- It should label run results as bounded evidence and explain when a comparison
+  is not directly fair.
 
 ## Ranking Semantics
 
@@ -51,5 +53,5 @@ candidate run planning while preserving model judgment about the active repo.
 
 ## Notes
 
-Use `references/execution-policy.md`, `../../references/explore-variant-spec.md`, `scripts/plan_variants.py`, and `scripts/write_outputs.py`.
+Use `references/execution-policy.md`, `../../references/explore-variant-spec.md`, `../../references/deep-learning-experiment-principles.md`, `scripts/plan_variants.py`, and `scripts/write_outputs.py`.
 

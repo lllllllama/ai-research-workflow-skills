@@ -17,6 +17,10 @@ campaigns, not fields the agent must invent on every run.
 `variant_spec` still exists, but it is now an optional run-level part of a
 larger campaign.
 
+RigorPilot Explore treats novelty as a candidate hypothesis. Novelty and
+significance remain hypotheses until supported by literature contrast, ablation
+evidence, and fair comparison.
+
 ## Minimal Shape
 
 ```json
@@ -147,12 +151,40 @@ Use this block to seed auditable lookup records without turning the orchestrator
 
 Supported fields:
 
+- `source_preference`
+- `local_literature`
 - `queries`
 - `seed_sources`
 - `enable_repo_local_extraction`
 - `optional_providers`
 
-All lookup artifacts are cached into `sources/` with stable names, `sources/records/`, and an `index.json`. Missing optional provider keys must not block this pass.
+RigorPilot Explore may prefer local literature context first, including Zotero,
+if available. Local literature should be treated as curated prior knowledge. If
+local literature is unavailable or too sparse, bounded web/source lookup may be
+used. Zotero-first is a source lookup strategy, not a separate main skill. It
+should support meaningful and potentially novel idea generation, not become a
+generic literature search tool.
+
+Example future-compatible lookup hint:
+
+```yaml
+research_lookup:
+  source_preference:
+    - local_literature
+    - seed_sources
+    - repo_local
+    - public_locators
+    - optional_web
+  local_literature:
+    enabled: auto
+    provider: zotero
+    fallback_to_web_when:
+      - unavailable
+      - too_sparse
+      - insufficient_candidate_coverage
+```
+
+All lookup artifacts are cached into `sources/` with stable names, `sources/records/`, and an `index.json`. Missing optional provider keys, including Zotero, must not block this pass.
 
 ### `idea_policy`
 

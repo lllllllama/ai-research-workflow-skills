@@ -1,6 +1,6 @@
 ---
 name: explore-code
-description: Explore-lane code adaptation skill for deep learning research repositories. Use when the researcher explicitly authorizes exploratory work on an isolated branch or worktree to transplant modules, adapt a backbone, add LoRA or adapter layers, replace a head, or stitch together low-risk migration ideas with summary-only records in `explore_outputs/`. Do not use for end-to-end exploration orchestration on top of `current_research`, trusted baseline reproduction, conservative debugging, environment setup, or default repository analysis.
+description: RigorPilot explore-code skill for auditable candidate implementation in deep learning research repositories. Use when the researcher explicitly authorizes exploratory work on an isolated branch or worktree to transplant modules, adapt a backbone, add LoRA or adapter layers, replace a head, or stitch together meaningful low-risk migration ideas with rollback-aware records in `explore_outputs/`. Do not use for end-to-end exploration orchestration on top of `current_research`, trusted baseline reproduction, conservative debugging, environment setup, verified contribution claims, or default repository analysis.
 ---
 
 # explore-code
@@ -28,6 +28,8 @@ bounded candidate code work without over-prescribing implementation details.
 - Use `ai-research-explore` instead when the task spans both current_research coordination and exploratory runs.
 - It may hand off execution to `minimal-run-and-audit` or `run-train`.
 - It should favor source-anchored copying and minimal adaptation over freeform rewrites.
+- It should record why a candidate change is meaningful, how to roll it back,
+  and why it remains a candidate rather than a verified contribution.
 
 ## Output expectations
 
@@ -37,5 +39,5 @@ bounded candidate code work without over-prescribing implementation details.
 
 ## Notes
 
-Use `references/explore-policy.md`, `scripts/plan_code_changes.py`, and `scripts/write_outputs.py`.
+Use `references/explore-policy.md`, `../../references/research-rigor-principles.md`, `scripts/plan_code_changes.py`, and `scripts/write_outputs.py`.
 

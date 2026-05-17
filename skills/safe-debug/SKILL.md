@@ -1,6 +1,6 @@
 ---
 name: safe-debug
-description: Trusted-lane debug skill for deep learning research work. Use when the user pastes a traceback, terminal error, CUDA OOM, checkpoint load failure, shape mismatch, NaN loss symptom, or training failure and wants conservative diagnosis before any patching. Do not use for broad refactoring, speculative adaptation, automatic exploratory patching, or general repository familiarization.
+description: RigorPilot trusted debug skill for deep learning research work. Use when the user pastes a traceback, terminal error, CUDA OOM, checkpoint load failure, shape mismatch, NaN loss symptom, or training failure and wants conservative diagnosis before any patching, with debug fixes clearly separated from research contributions. Do not use for broad refactoring, speculative adaptation, automatic exploratory patching, or general repository familiarization.
 ---
 
 # safe-debug
@@ -28,6 +28,8 @@ cause.
 - Do not modify repository code by default.
 - If a patch is needed, propose the smallest fix and require explicit approval first.
 - Escalate savepoint or branch creation before medium-risk or high-risk changes.
+- A debug fix is not automatically a research contribution; if it changes
+  experiment meaning or comparability, say so explicitly.
 
 ## Output expectations
 
@@ -37,4 +39,4 @@ cause.
 
 ## Notes
 
-Use `references/debug-policy.md` and the shared `references/research-pitfall-checklist.md`.
+Use `references/debug-policy.md`, `../../references/research-rigor-principles.md`, and the shared `references/research-pitfall-checklist.md`.
