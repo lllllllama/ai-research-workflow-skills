@@ -1,9 +1,12 @@
 ---
 name: env-and-assets-bootstrap
-description: RigorPilot setup skill for README-first deep learning repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target.
+description: Rigor Setup skill for README-first deep learning repo reproduction. Use when the task is specifically to prepare a conservative conda-first environment, checkpoint and dataset path assumptions, cache location hints, and setup notes before any run on a README-documented repository. Do not use for repo scanning, full orchestration, paper interpretation, final run reporting, or generic environment setup that is not tied to a specific reproduction target.
 ---
 
 # env-and-assets-bootstrap
+
+Use this as the Rigor Setup skill. The installed slug remains
+`env-and-assets-bootstrap` for compatibility.
 
 Use the shared operating principles in
 `../../references/agent-operating-principles.md`; this skill should keep setup

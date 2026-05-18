@@ -4,9 +4,9 @@ This repository depends on clear trigger boundaries because multiple orchestrato
 
 ## Main rule
 
-`ai-research-reproduction` should trigger only for end-to-end README-first deep learning repo reproduction requests, the RigorPilot Reproduce mode.
+`ai-research-reproduction` should trigger only for end-to-end README-first deep learning repo reproduction requests, the Rigor Reproduce mode.
 
-`ai-research-explore` should trigger only for explicit end-to-end exploration on top of `current_research`, the RigorPilot Explore mode for candidate hypotheses rather than verified novelty.
+`ai-research-explore` should trigger only for explicit end-to-end exploration on top of `current_research`, the Rigor Explore mode for candidate hypotheses rather than verified novelty.
 
 Narrower skills should trigger only for explicitly narrower requests:
 

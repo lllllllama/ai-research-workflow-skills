@@ -34,7 +34,7 @@ Explore output traits:
 
 - `current_research` recorded as the exploratory anchor
 - canonical `explore_context` recorded with `current_research`, `experiment_branch`, and explicit authorization
-- campaign metadata recorded when `ai-research-explore` is used in the third scenario
+- campaign metadata recorded when `ai-research-explore` is used for a Rigor Explore campaign
 - `eval_contract`, `baseline_gate`, `idea_gate`, `selected_idea`, `experiment_manifest`, and `experiment_ledger` recorded for campaign-style runs
 - `SCIENTIFIC_CHANGELOG.md` and `COMPARABILITY_REPORT.md` recorded for candidate-only scientific meaning and comparability review
 - `analysis_artifacts`, `lookup_records`, `idea_cards`, `improvement_bank`, `idea_seeds`, `target_location_map`, `minimal_patch_plan`, `resource_plan`, `atomic_idea_map`, `implementation_fidelity`, and `smoke_report` recorded when `ai-research-explore` runs the bounded campaign pipeline

@@ -1,4 +1,4 @@
-# Explore Run Policy
+# Rigor Improve / Rigor Explore Run Policy
 
 ## Purpose
 

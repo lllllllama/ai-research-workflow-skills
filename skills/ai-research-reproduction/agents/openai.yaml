@@ -1,3 +1,3 @@
-display_name: RigorPilot Reproduce
-short_description: End-to-end README-first orchestration for minimal-trustworthy deep learning repo reproduction.
+display_name: Rigor Reproduce
+short_description: Rigor Reproduce compatible slug for end-to-end README-first deep learning repo reproduction.
 default_prompt: Reproduce this deep learning paper repository with README-first rules, choose the smallest documented inference or evaluation target, keep patches conservative and clearly labeled, and write standardized outputs to repro_outputs/.

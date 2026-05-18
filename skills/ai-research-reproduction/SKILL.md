@@ -1,19 +1,20 @@
 ---
 name: ai-research-reproduction
-description: RigorPilot reproduce-mode orchestrator for README-first deep learning repository reproduction. Use when the user wants an end-to-end, minimal-trustworthy flow that reads the repository first, selects the smallest documented inference or evaluation target, coordinates intake, setup, trusted execution, optional trusted training, optional repository analysis, and optional paper-gap resolution, enforces conservative patch rules, records evidence assumptions deviations and human decision points, and writes the standardized `repro_outputs/` bundle. Do not use for paper summary, generic environment setup, isolated repo scanning, standalone command execution, silent protocol changes, score chasing, or broad research assistance outside repository-grounded reproduction.
+description: Rigor Reproduce compatible skill slug for README-first deep learning repository reproduction. Use when the user wants an end-to-end, minimal-trustworthy flow that reads the repository first, selects the smallest documented inference or evaluation target, coordinates intake, setup, trusted execution, optional trusted training, optional repository analysis, and optional paper-gap resolution, enforces conservative patch rules, records evidence assumptions deviations and human decision points, and writes the standardized `repro_outputs/` bundle. Do not use for paper summary, generic environment setup, isolated repo scanning, standalone command execution, silent protocol changes, score chasing, or broad research assistance outside repository-grounded reproduction.
 ---
 
 # ai-research-reproduction
 
 ## Purpose
 
-Use this as the RigorPilot Reproduce orchestrator for README-first deep learning repository
-reproduction. The skill guides the agent toward a minimal trustworthy run with
-auditable evidence; it should not micromanage implementation details that the
-model can infer from the repository. Reproduction is not "make it run by
-changing anything"; it means faithfully reading the README, environment,
-weights, datasets, and documented commands, then recording results and
-deviations.
+Use this as the Rigor Reproduce compatible skill slug for README-first deep
+learning repository reproduction. The installed slug remains
+`ai-research-reproduction` for compatibility. The skill guides the agent toward
+a minimal trustworthy run with auditable evidence; it should not micromanage
+implementation details that the model can infer from the repository.
+Reproduction is not "make it run by changing anything"; it means faithfully
+reading the README, environment, weights, datasets, and documented commands,
+then recording results and deviations.
 
 Start from the shared operating principles in
 `../../references/agent-operating-principles.md`, then load

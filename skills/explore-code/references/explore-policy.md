@@ -1,4 +1,4 @@
-# Explore Code Policy
+# Rigor Improve Code Policy
 
 ## Purpose
 

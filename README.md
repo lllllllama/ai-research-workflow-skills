@@ -101,7 +101,7 @@ This repository currently ships:
 - `6` trusted-lane public skills and `3` explore-lane public skills.
 - `4` project-scoped Claude Code command wrappers under `.claude/commands/`.
 - `45` Python scripts, including `43` test scripts with focused `research-explore` regressions and document-structure checks.
-- A RigorPilot Explore chain that now includes bounded idea-seed generation, explicit idea score breakdowns, atomic idea decomposition, and implementation-fidelity evidence split into planned, heuristic, and observed layers.
+- A Rigor Explore chain that now includes bounded idea-seed generation, explicit idea score breakdowns, atomic idea decomposition, and implementation-fidelity evidence split into planned, heuristic, and observed layers.
 - A documented and tested workflow intended to be usable from both Windows PowerShell and Linux shells.
 
 The skills use the open `SKILL.md` layout, so the same repository can be installed into neutral Agent Skills directories as well as Codex and Claude Code. For shared local installs, prefer `~/.agents/skills/` or `./.agents/skills/`. Client-specific installs under `~/.codex/skills/` and `~/.claude/skills/` remain supported.
@@ -221,24 +221,27 @@ PowerShell note:
 
 ## 🎯 Choose an Entry Point
 
-RigorPilot modes map to the current compatible skill slugs:
+RigorPilot display names map to the current compatible skill slugs. The short
+mode is a RigorPilot display/documentation name and possible future alias; use
+the current compatible skill slug for today's `npx skills add --skill ...` and
+direct skill calls.
 
-| If you want to... | RigorPilot mode | Current skill slug |
-|---|---|---|
-| Reproduce a deep learning repository from README commands | Reproduce | `ai-research-reproduction` |
-| Explore meaningful and potentially novel ideas on top of current research | Explore | `ai-research-explore` |
-| Improve a baseline while preserving comparability | Improve | `ai-research-explore`, `explore-code`, `explore-run` |
-| Audit changes, scientific meaning, and comparability | Audit | `analyze-project`, `safe-debug`, generated reports |
-| Analyze repository structure without editing | Analyze | `analyze-project` |
-| Prepare environment, datasets, weights, and cache assumptions | Setup | `env-and-assets-bootstrap` |
-| Run documented evaluation or inference conservatively | Run | `minimal-run-and-audit` |
-| Start or verify training conservatively | Train | `run-train` |
-| Debug a failure safely | Debug | `safe-debug` |
+| If you want to... | RigorPilot display name | Short mode | Current compatible skill slug |
+|---|---|---|---|
+| Reproduce a deep learning repository from README commands | Rigor Reproduce | `rigor-reproduce` | `ai-research-reproduction` |
+| Explore meaningful and potentially novel ideas on top of current research | Rigor Explore | `rigor-explore` | `ai-research-explore` |
+| Improve a baseline while preserving comparability | Rigor Improve | `rigor-improve` | `ai-research-explore`, `explore-code`, `explore-run` |
+| Audit changes, scientific meaning, and comparability | Rigor Audit | `rigor-audit` | `analyze-project`, `safe-debug`, generated reports |
+| Analyze repository structure without editing | Rigor Analyze | `rigor-analyze` | `analyze-project` |
+| Prepare environment, datasets, weights, and cache assumptions | Rigor Setup | `rigor-setup` | `env-and-assets-bootstrap` |
+| Run documented evaluation or inference conservatively | Rigor Run | `rigor-run` | `minimal-run-and-audit` |
+| Start or verify training conservatively | Rigor Train | `rigor-train` | `run-train` |
+| Debug a failure safely | Rigor Debug | `rigor-debug` | `safe-debug` |
 
 Bundled helper skills:
 
-- `repo-intake-and-plan`
-- `paper-context-resolver`
+- Rigor Intake / `rigor-intake` -> `repo-intake-and-plan`
+- Rigor Paper Context / `rigor-paper-context` -> `paper-context-resolver`
 
 ## 🛣️ Lane Model
 
@@ -304,28 +307,29 @@ flowchart TD
     B -- No --> C[Trusted lane]
     B -- Yes --> D[Explore lane]
 
-    C --> C1[ai-research-reproduction]
-    C --> C2[analyze-project]
-    C --> C3[env-and-assets-bootstrap]
-    C --> C4[minimal-run-and-audit]
-    C --> C5[run-train]
-    C --> C6[safe-debug]
+    C --> C1[Rigor Reproduce<br/>ai-research-reproduction]
+    C --> C2[Rigor Analyze / Audit<br/>analyze-project]
+    C --> C3[Rigor Setup<br/>env-and-assets-bootstrap]
+    C --> C4[Rigor Run<br/>minimal-run-and-audit]
+    C --> C5[Rigor Train<br/>run-train]
+    C --> C6[Rigor Debug / Audit<br/>safe-debug]
 
-    D --> D1[ai-research-explore]
-    D --> D2[explore-code]
-    D --> D3[explore-run]
+    D --> D1[Rigor Explore<br/>ai-research-explore]
+    D --> D2[Rigor Improve<br/>explore-code]
+    D --> D3[Rigor Improve / Explore<br/>explore-run]
 
-    C1 -. helper .-> H1[repo-intake-and-plan]
-    C1 -. helper .-> H2[paper-context-resolver]
+    C1 -. helper .-> H1[Rigor Intake<br/>repo-intake-and-plan]
+    C1 -. helper .-> H2[Rigor Paper Context<br/>paper-context-resolver]
 ```
 
-## 🧠 RigorPilot Explore Flow
+## 🧠 Rigor Explore Flow
 
-`ai-research-explore` is the RigorPilot Explore entrypoint when the researcher has
-already frozen the task family, dataset, evaluation method, and provided SOTA
-references, then explicitly authorizes candidate-only exploration on top of
-`current_research`. In RigorPilot terms, this is meaningful and potentially
-novel candidate work, not verified novelty.
+`ai-research-explore` is the Rigor Explore compatible slug when the researcher
+has already frozen the task family, dataset, evaluation method, and provided
+SOTA references, then explicitly authorizes candidate-only exploration on top
+of `current_research`. This was previously documented as the third-scenario
+campaign flow. In RigorPilot terms, this is meaningful and potentially novel
+candidate work, not verified novelty.
 
 ```mermaid
 flowchart LR
@@ -347,26 +351,26 @@ Current RigorPilot implementation highlights:
 - Implementation fidelity distinguishes planned, heuristic, and observed implementation evidence in `analysis_outputs/IMPLEMENTATION_FIDELITY.md` and `analysis_outputs/IMPLEMENTATION_FIDELITY.json`.
 - Executor-observed evidence now comes from emitted `changed_files`, `new_files`, `deleted_files`, and `touched_paths` rather than planned target placeholders.
 
-The two-loop rhythm is a guide, not a never-stop autonomous agent. RigorPilot Explore
+The two-loop rhythm is a guide, not a never-stop autonomous agent. Rigor Explore
 stops at explicit blockers, unclear scientific meaning, exhausted budget,
 missing anchors, or human checkpoints. The explore lane must not claim trusted
 reproduction success, global benchmark completeness, or verified novelty.
 
 ## 📦 Public Skill Matrix
 
-| Lane | Skill | Purpose |
-|---|---|---|
-| Trusted | `ai-research-reproduction` | End-to-end README-first reproduction orchestrator |
-| Trusted | `env-and-assets-bootstrap` | Conservative environment, dataset, checkpoint, and cache planning |
-| Trusted | `minimal-run-and-audit` | Trusted inference, evaluation, smoke, and sanity execution |
-| Trusted | `analyze-project` | Read-only project analysis, model mapping, and risk surfacing |
-| Trusted | `run-train` | Training startup verification, resume handling, bounded monitoring, and training records |
-| Trusted | `safe-debug` | Research-safe debugging: analyze first, patch only after approval |
-| Explore | `ai-research-explore` | RigorPilot Explore orchestration on top of `current_research` with repo understanding, idea gating, and governed experiments |
-| Explore | `explore-code` | Exploratory code adaptation, transplant, and stitching on isolated branches |
-| Explore | `explore-run` | Small-subset probes, short-cycle trials, and ranked exploratory runs |
-| Helper | `repo-intake-and-plan` | Narrow helper for repo scanning and README command extraction |
-| Helper | `paper-context-resolver` | Narrow helper for README-paper gap resolution |
+| Lane | RigorPilot display name | Short mode | Compatible skill slug | Purpose |
+|---|---|---|---|---|
+| Trusted | Rigor Reproduce | `rigor-reproduce` | `ai-research-reproduction` | End-to-end README-first reproduction orchestrator |
+| Trusted | Rigor Setup | `rigor-setup` | `env-and-assets-bootstrap` | Conservative environment, dataset, checkpoint, and cache planning |
+| Trusted | Rigor Run | `rigor-run` | `minimal-run-and-audit` | Trusted inference, evaluation, smoke, and sanity execution |
+| Trusted | Rigor Analyze / Rigor Audit | `rigor-analyze`, `rigor-audit` | `analyze-project` | Read-only project analysis, model mapping, and risk surfacing |
+| Trusted | Rigor Train | `rigor-train` | `run-train` | Training startup verification, resume handling, bounded monitoring, and training records |
+| Trusted | Rigor Debug / Rigor Audit | `rigor-debug`, `rigor-audit` | `safe-debug` | Research-safe debugging: analyze first, patch only after approval |
+| Explore | Rigor Explore | `rigor-explore` | `ai-research-explore` | Current-research exploration with repo understanding, idea gating, and governed experiments |
+| Explore | Rigor Improve | `rigor-improve` | `explore-code` | Candidate implementation, transplant, and stitching on isolated branches |
+| Explore | Rigor Improve / Rigor Explore | `rigor-improve`, `rigor-explore` | `explore-run` | Small-subset probes, short-cycle trials, and ranked exploratory runs |
+| Helper | Rigor Intake | `rigor-intake` | `repo-intake-and-plan` | Narrow helper for repo scanning and README command extraction |
+| Helper | Rigor Paper Context | `rigor-paper-context` | `paper-context-resolver` | Narrow helper for README-paper gap resolution |
 
 ## 🧪 Testing Coverage Map
 
@@ -397,7 +401,7 @@ Coverage notes:
 | `analysis_outputs/` | Read-only project analysis plus research map, change map, eval contract, source inventory/support, improvement bank, idea cards, idea seeds, atomic idea map, implementation fidelity, mapping, and resource plan |
 | `debug_outputs/` | Safe debug diagnosis and patch plan |
 | `sources/` | Free-first research lookup records with `sources/records/`, stable names, bounded provider resolution, repo-local extraction, and an auditable index |
-| `explore_outputs/` | RigorPilot Explore changeset, idea gate, experiment plan, experiment manifest, scientific changelog, comparability report, split static/runtime smoke reporting, ledger, and ranked run summary |
+| `explore_outputs/` | Rigor Explore changeset, idea gate, experiment plan, experiment manifest, scientific changelog, comparability report, split static/runtime smoke reporting, ledger, and ranked run summary |
 
 ## Suggested Research Evidence
 
@@ -420,7 +424,7 @@ concepts.
 
 ## 🧩 Campaign Inputs
 
-`ai-research-explore` still accepts a plain `variant_spec.json`, but the preferred input for the third scenario is `research_campaign.json` or `research_campaign.yaml`.
+`ai-research-explore` still accepts a plain `variant_spec.json`, but the preferred input for Rigor Explore campaigns is `research_campaign.json` or `research_campaign.yaml`.
 
 The durable campaign core is:
 
@@ -580,7 +584,7 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 - Trusted reproduction still avoids silent semantic changes.
 - Helper skills remain narrow and are not intended to become public catch-all entry points.
 - Exploratory work must stay isolated from trusted baselines.
-- `ai-research-explore` is the governed RigorPilot Explore orchestrator, not an open-ended autonomous research agent.
+- `ai-research-explore` is the governed Rigor Explore compatible slug, not an open-ended autonomous research agent.
 
 ## 🧱 Scope
 

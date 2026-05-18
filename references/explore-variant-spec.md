@@ -4,7 +4,7 @@
 
 Use this reference when preparing a `variant_spec.json` for `explore-run` or `ai-research-explore`.
 
-In the third scenario, `variant_spec` is the run-level section inside a larger `research_campaign.json` / `research_campaign.yaml`. See [skills/ai-research-explore/references/research-campaign-spec.md](../skills/ai-research-explore/references/research-campaign-spec.md).
+In Rigor Explore campaigns, `variant_spec` is the run-level section inside a larger `research_campaign.json` / `research_campaign.yaml`. See [skills/ai-research-explore/references/research-campaign-spec.md](../skills/ai-research-explore/references/research-campaign-spec.md).
 
 The spec describes:
 

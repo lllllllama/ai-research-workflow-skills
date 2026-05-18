@@ -2,7 +2,7 @@
 
 ## Purpose
 
-Use `research_campaign.json` or `research_campaign.yaml` when `ai-research-explore` is operating in the third scenario:
+Use `research_campaign.json` or `research_campaign.yaml` when `ai-research-explore` is operating as Rigor Explore:
 
 - the task family is already chosen
 - the dataset is already chosen
@@ -17,7 +17,7 @@ campaigns, not fields the agent must invent on every run.
 `variant_spec` still exists, but it is now an optional run-level part of a
 larger campaign.
 
-RigorPilot Explore treats novelty as a candidate hypothesis. Novelty and
+Rigor Explore treats novelty as a candidate hypothesis. Novelty and
 significance remain hypotheses until supported by literature contrast, ablation
 evidence, and fair comparison.
 
@@ -158,7 +158,7 @@ Supported fields:
 - `enable_repo_local_extraction`
 - `optional_providers`
 
-RigorPilot Explore may prefer local literature context first, including Zotero,
+Rigor Explore may prefer local literature context first, including Zotero,
 if available. Local literature should be treated as curated prior knowledge. If
 local literature is unavailable or too sparse, bounded web/source lookup may be
 used. Zotero-first is a source lookup strategy, not a separate main skill. It

@@ -1,9 +1,12 @@
 ---
 name: analyze-project
-description: Trusted-lane analysis skill for deep learning research repositories. Use when the user wants to read and understand a repository, inspect model structure and training or inference entrypoints, review configs and insertion points, or flag suspicious implementation patterns without modifying code or running heavy jobs. Do not use for active command execution, broad refactoring, speculative code adaptation, or automatic bug fixing.
+description: Rigor Analyze / Rigor Audit read-only skill for deep learning research repositories. Use when the user wants to read and understand a repository, inspect model structure and training or inference entrypoints, review configs and insertion points, or flag suspicious implementation patterns without modifying code or running heavy jobs. Do not use for active command execution, broad refactoring, speculative code adaptation, or automatic bug fixing.
 ---
 
 # analyze-project
+
+Use this as the Rigor Analyze / Rigor Audit read-only skill. The installed slug
+remains `analyze-project` for compatibility.
 
 Use the shared operating principles in
 `../../references/agent-operating-principles.md`; this skill should guide

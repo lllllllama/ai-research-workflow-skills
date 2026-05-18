@@ -3,6 +3,8 @@
   "skills": [
     {
       "name": "ai-research-reproduction",
+      "display_name": "Rigor Reproduce",
+      "rigor_slug": "rigor-reproduce",
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -49,6 +51,8 @@
     },
     {
       "name": "repo-intake-and-plan",
+      "display_name": "Rigor Intake",
+      "rigor_slug": "rigor-intake",
       "tier": "helper",
       "lane": "helper",
       "compat": {
@@ -70,6 +74,8 @@
     },
     {
       "name": "env-and-assets-bootstrap",
+      "display_name": "Rigor Setup",
+      "rigor_slug": "rigor-setup",
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -94,6 +100,12 @@
     },
     {
       "name": "analyze-project",
+      "display_name": "Rigor Analyze / Rigor Audit",
+      "rigor_slug": "rigor-analyze",
+      "rigor_modes": [
+        "rigor-analyze",
+        "rigor-audit"
+      ],
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -118,6 +130,8 @@
     },
     {
       "name": "minimal-run-and-audit",
+      "display_name": "Rigor Run",
+      "rigor_slug": "rigor-run",
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -147,6 +161,8 @@
     },
     {
       "name": "run-train",
+      "display_name": "Rigor Train",
+      "rigor_slug": "rigor-train",
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -175,6 +191,12 @@
     },
     {
       "name": "ai-research-explore",
+      "display_name": "Rigor Explore",
+      "rigor_slug": "rigor-explore",
+      "rigor_modes": [
+        "rigor-explore",
+        "rigor-improve"
+      ],
       "tier": "public",
       "lane": "explore",
       "compat": {
@@ -231,6 +253,11 @@
     },
     {
       "name": "explore-code",
+      "display_name": "Rigor Improve",
+      "rigor_slug": "rigor-improve",
+      "rigor_modes": [
+        "rigor-improve"
+      ],
       "tier": "public",
       "lane": "explore",
       "compat": {
@@ -261,6 +288,12 @@
     },
     {
       "name": "explore-run",
+      "display_name": "Rigor Improve / Rigor Explore",
+      "rigor_slug": "rigor-improve",
+      "rigor_modes": [
+        "rigor-improve",
+        "rigor-explore"
+      ],
       "tier": "public",
       "lane": "explore",
       "compat": {
@@ -291,6 +324,12 @@
     },
     {
       "name": "safe-debug",
+      "display_name": "Rigor Debug / Rigor Audit",
+      "rigor_slug": "rigor-debug",
+      "rigor_modes": [
+        "rigor-debug",
+        "rigor-audit"
+      ],
       "tier": "public",
       "lane": "trusted",
       "compat": {
@@ -315,6 +354,8 @@
     },
     {
       "name": "paper-context-resolver",
+      "display_name": "Rigor Paper Context",
+      "rigor_slug": "rigor-paper-context",
       "tier": "helper",
       "lane": "helper",
       "compat": {

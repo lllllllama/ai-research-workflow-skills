@@ -1,9 +1,12 @@
 ---
 name: safe-debug
-description: RigorPilot trusted debug skill for deep learning research work. Use when the user pastes a traceback, terminal error, CUDA OOM, checkpoint load failure, shape mismatch, NaN loss symptom, or training failure and wants conservative diagnosis before any patching, with debug fixes clearly separated from research contributions. Do not use for broad refactoring, speculative adaptation, automatic exploratory patching, or general repository familiarization.
+description: Rigor Debug / Rigor Audit skill for deep learning research work. Use when the user pastes a traceback, terminal error, CUDA OOM, checkpoint load failure, shape mismatch, NaN loss symptom, or training failure and wants conservative diagnosis before any patching, with debug fixes clearly separated from research contributions. Do not use for broad refactoring, speculative adaptation, automatic exploratory patching, or general repository familiarization.
 ---
 
 # safe-debug
+
+Use this as the Rigor Debug / Rigor Audit skill. The installed slug remains
+`safe-debug` for compatibility.
 
 Use the shared operating principles in
 `../../references/agent-operating-principles.md`; this skill should guide

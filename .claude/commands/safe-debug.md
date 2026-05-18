@@ -1,5 +1,5 @@
 ---
-description: Diagnose a research repository failure conservatively before patching.
+description: Run Rigor Debug on a research repository failure before patching.
 argument-hint: [traceback, failing command, or debug focus]
 ---
 
@@ -7,7 +7,7 @@ Read and follow @skills/safe-debug/SKILL.md.
 
 Use the current conversation context plus `$ARGUMENTS` as the failure report. If there is still no actionable traceback, command output, or failure description, ask for the missing failure context instead of guessing.
 
-Stay in the safe-debug lane:
+Stay in Rigor Debug:
 
 - diagnose before patching
 - prefer the smallest safe fix

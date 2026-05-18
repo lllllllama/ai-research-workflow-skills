@@ -1,15 +1,16 @@
 ---
 name: ai-research-explore
-description: RigorPilot explore-mode orchestrator for meaningful and potentially novel deep learning research candidates: use when the researcher has chosen the task family, dataset, benchmark, evaluation method, provided SOTA references, and wants candidate-only exploration on top of `current_research` with auditable repo understanding, idea gating, fair comparison, and governed experiments written to `explore_outputs/`. Do not use for README-first trusted reproduction, open-ended direction finding, narrow code-only or run-only exploration, passive repo analysis, verified novelty claims, or implicit experimentation.
+description: Rigor Explore compatible skill slug for meaningful and potentially novel deep learning research candidates. Use when the researcher has chosen the task family, dataset, benchmark, evaluation method, provided SOTA references, and wants candidate-only exploration on top of `current_research` with auditable repo understanding, idea gating, fair comparison, and governed experiments written to `explore_outputs/`. Do not use for README-first trusted reproduction, open-ended direction finding, narrow code-only or run-only exploration, passive repo analysis, verified novelty claims, or implicit experimentation.
 ---
 
 # ai-research-explore
 
 ## Purpose
 
-Use this as the explore-lane orchestrator after the researcher explicitly
-authorizes candidate-only work on top of a durable `current_research` anchor.
-In RigorPilot terms, Explore is for meaningful and potentially novel deep
+Use this as the Rigor Explore compatible skill slug after the researcher
+explicitly authorizes candidate-only work on top of a durable
+`current_research` anchor. The installed slug remains `ai-research-explore` for
+compatibility. Rigor Explore is for meaningful and potentially novel deep
 learning research candidates while preserving scientific rigor, comparability,
 reproducibility, and auditable collaboration. Novelty and significance remain
 hypotheses before literature contrast, ablation evidence, and fair comparison.
@@ -89,8 +90,8 @@ human checkpoint.
 
 ## Campaign Inputs
 
-`research_campaign` is preferred for the third scenario, but it should stay
-minimal. The durable core is:
+`research_campaign` is preferred for Rigor Explore campaigns, but it should
+stay minimal. The durable core is:
 
 - `current_research`
 - `task_family`
@@ -111,7 +112,7 @@ schema and artifact expectations.
 - Load `references/ai-research-explore-policy.md` for lane safety and candidate
   semantics.
 - Load `references/research-campaign-spec.md` only when a campaign file is
-  present or the user asks for RigorPilot Explore campaign governance.
+  present or the user asks for Rigor Explore campaign governance.
 - Load `../../references/explore-variant-spec.md` for run-level variant matrix
   details.
 - Load `../../references/research-rigor-principles.md` before making novelty,

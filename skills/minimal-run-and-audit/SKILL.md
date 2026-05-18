@@ -1,9 +1,12 @@
 ---
 name: minimal-run-and-audit
-description: RigorPilot trusted execution and reporting skill for README-first deep learning repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, hidden scientific-meaning changes, or end-to-end orchestration by itself.
+description: Rigor Run skill for README-first deep learning repo reproduction. Use when the task is specifically to capture or normalize evidence from the selected smoke test or documented inference or evaluation command and write standardized `repro_outputs/` files, including patch notes when repository files changed. Do not use for training execution, initial repo intake, generic environment setup, paper lookup, target selection, hidden scientific-meaning changes, or end-to-end orchestration by itself.
 ---
 
 # minimal-run-and-audit
+
+Use this as the Rigor Run skill. The installed slug remains
+`minimal-run-and-audit` for compatibility.
 
 Use the shared operating principles in
 `../../references/agent-operating-principles.md`; this skill should make run

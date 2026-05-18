@@ -140,20 +140,41 @@ def load_skill_registry(root: Path) -> Tuple[List[Dict[str, Any]], List[str]]:
             errors.append(f"Duplicate registry skill name: {name}")
         names.add(name)
 
+        display_name = item.get("display_name")
+        if not isinstance(display_name, str) or not display_name:
+            errors.append(f"{name} missing string display_name")
+
+        rigor_slug = item.get("rigor_slug")
+        if rigor_slug is not None and (not isinstance(rigor_slug, str) or not rigor_slug.startswith("rigor-")):
+            errors.append(f"{name} has invalid rigor_slug `{rigor_slug}`")
+
+        rigor_modes = item.get("rigor_modes")
+        if rigor_modes is not None:
+            if not isinstance(rigor_modes, list) or not rigor_modes:
+                errors.append(f"{name} has invalid rigor_modes")
+            elif any(not isinstance(mode, str) or not mode.startswith("rigor-") for mode in rigor_modes):
+                errors.append(f"{name} has invalid rigor_modes entries")
+            elif rigor_slug and rigor_slug not in rigor_modes:
+                errors.append(f"{name} rigor_modes must include rigor_slug")
+
         if item.get("tier") not in ALLOWED_TIERS:
             errors.append(f"{name} has invalid tier `{item.get('tier')}`")
         if item.get("lane") not in ALLOWED_LANES:
             errors.append(f"{name} has invalid lane `{item.get('lane')}`")
+        if item.get("tier") == "public" and not rigor_slug:
+            errors.append(f"{name} public skill missing rigor_slug")
 
         compat = item.get("compat")
         if not isinstance(compat, dict):
             errors.append(f"{name} missing compat object")
         else:
-            if "preserve_name" not in compat:
-                errors.append(f"{name} missing compat.preserve_name")
+            if compat.get("preserve_name") is not True:
+                errors.append(f"{name} must set compat.preserve_name true")
             aliases = compat.get("aliases", [])
             if not isinstance(aliases, list):
                 errors.append(f"{name} has invalid compat.aliases")
+            elif any(str(alias).startswith("rigor-") for alias in aliases):
+                errors.append(f"{name} must not advertise rigor-* as install aliases in compat.aliases")
 
         if not isinstance(item.get("can_call", []), list):
             errors.append(f"{name} has invalid can_call list")

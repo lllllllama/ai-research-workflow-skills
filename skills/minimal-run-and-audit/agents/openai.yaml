@@ -1,3 +1,3 @@
-display_name: Minimal Run And Audit
-short_description: Run the selected inference, evaluation, smoke, or sanity command and write standardized reproduction outputs.
+display_name: Rigor Run
+short_description: Rigor Run mode for selected inference, evaluation, smoke, or sanity execution evidence.
 default_prompt: Run the selected smoke, inference, evaluation, or sanity command conservatively, capture execution evidence, and write SUMMARY.md COMMANDS.md LOG.md and status.json.

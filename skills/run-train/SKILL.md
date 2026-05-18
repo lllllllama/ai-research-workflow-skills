@@ -1,9 +1,12 @@
 ---
 name: run-train
-description: RigorPilot trusted training execution skill for deep learning research repositories. Use when a documented or selected training command should be run conservatively for startup verification, short-run verification, full kickoff, or resume, with command, config, seed, log, checkpoint, status, and metric evidence written to standardized `train_outputs/`. Do not use for environment setup, exploratory sweeps, speculative idea implementation, or end-to-end orchestration.
+description: Rigor Train skill for deep learning research repositories. Use when a documented or selected training command should be run conservatively for startup verification, short-run verification, full kickoff, or resume, with command, config, seed, log, checkpoint, status, and metric evidence written to standardized `train_outputs/`. Do not use for environment setup, exploratory sweeps, speculative idea implementation, or end-to-end orchestration.
 ---
 
 # run-train
+
+Use this as the Rigor Train skill. The installed slug remains `run-train` for
+compatibility.
 
 Use the shared operating principles in
 `../../references/agent-operating-principles.md`; this skill should keep

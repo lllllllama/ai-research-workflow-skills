@@ -32,16 +32,38 @@ def main() -> int:
             raise AssertionError(f"duplicate skill registry entry: {name}")
         names.add(name)
 
+        display_name = item.get("display_name")
+        if not display_name or not isinstance(display_name, str):
+            raise AssertionError(f"{name} must have a string display_name")
+
+        rigor_slug = item.get("rigor_slug")
+        if rigor_slug is not None:
+            if not isinstance(rigor_slug, str) or not rigor_slug.startswith("rigor-"):
+                raise AssertionError(f"{name} has invalid rigor_slug: {rigor_slug}")
+
+        rigor_modes = item.get("rigor_modes")
+        if rigor_modes is not None:
+            if not isinstance(rigor_modes, list) or not rigor_modes:
+                raise AssertionError(f"{name} has invalid rigor_modes")
+            if any(not isinstance(mode, str) or not mode.startswith("rigor-") for mode in rigor_modes):
+                raise AssertionError(f"{name} has invalid rigor_modes entries: {rigor_modes}")
+            if rigor_slug and rigor_slug not in rigor_modes:
+                raise AssertionError(f"{name} rigor_modes must include rigor_slug")
+
         if item.get("tier") not in ALLOWED_TIERS:
             raise AssertionError(f"{name} has invalid tier: {item.get('tier')}")
         if item.get("lane") not in ALLOWED_LANES:
             raise AssertionError(f"{name} has invalid lane: {item.get('lane')}")
+        if item.get("tier") == "public" and not rigor_slug:
+            raise AssertionError(f"{name} public skill must declare rigor_slug")
 
         compat = item.get("compat", {})
-        if "preserve_name" not in compat:
-            raise AssertionError(f"{name} is missing compat.preserve_name")
+        if compat.get("preserve_name") is not True:
+            raise AssertionError(f"{name} must set compat.preserve_name true")
         if not isinstance(compat.get("aliases", []), list):
             raise AssertionError(f"{name} has invalid compat.aliases")
+        if any(str(alias).startswith("rigor-") for alias in compat.get("aliases", [])):
+            raise AssertionError(f"{name} must not advertise rigor-* as install aliases in compat.aliases")
         if name == "ai-research-reproduction" and "ai-paper-reproduction" not in compat.get("aliases", []):
             raise AssertionError("ai-research-reproduction must preserve ai-paper-reproduction as a compat alias")
         if name == "ai-research-explore" and "research-explore" not in compat.get("aliases", []):

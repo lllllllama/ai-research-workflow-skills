@@ -1,6 +1,6 @@
 # Routing Policy
 
-This repository uses RigorPilot modes plus explicit research lanes to keep skill routing predictable and safe.
+This repository uses RigorPilot display modes plus explicit research lanes to keep skill routing predictable and safe.
 
 ## Default stance
 
@@ -15,18 +15,20 @@ implementation sequence.
 
 ## Lifecycle model
 
-Route by the user's current lifecycle need before choosing a concrete skill:
+Route by the user's current lifecycle need before choosing a concrete skill.
+RigorPilot short modes are display names and future aliases; current installs
+still use the compatible skill slugs.
 
-| Lifecycle need | RigorPilot mode | Preferred skill |
-|---|---|---|
-| Understand a repository without heavy execution | Analyze | `analyze-project` |
-| Reproduce a README-documented repository end to end | Reproduce | `ai-research-reproduction` |
-| Prepare environment, assets, checkpoints, or caches | Setup | `env-and-assets-bootstrap` |
-| Run documented inference or evaluation | Run | `minimal-run-and-audit` |
-| Start, resume, or verify training | Train | `run-train` |
-| Diagnose an active research-code failure | Debug | `safe-debug` |
-| Explore candidates on top of `current_research` | Explore / Improve | `ai-research-explore`, `explore-code`, or `explore-run` |
-| Report or package evidence | Audit | the skill that owns the active output directory |
+| Lifecycle need | RigorPilot display name | Short mode | Compatible skill slug |
+|---|---|---|---|
+| Understand a repository without heavy execution | Rigor Analyze | `rigor-analyze` | `analyze-project` |
+| Reproduce a README-documented repository end to end | Rigor Reproduce | `rigor-reproduce` | `ai-research-reproduction` |
+| Prepare environment, assets, checkpoints, or caches | Rigor Setup | `rigor-setup` | `env-and-assets-bootstrap` |
+| Run documented inference or evaluation | Rigor Run | `rigor-run` | `minimal-run-and-audit` |
+| Start, resume, or verify training | Rigor Train | `rigor-train` | `run-train` |
+| Diagnose an active research-code failure | Rigor Debug | `rigor-debug` | `safe-debug` |
+| Explore candidates on top of `current_research` | Rigor Explore / Rigor Improve | `rigor-explore`, `rigor-improve` | `ai-research-explore`, `explore-code`, or `explore-run` |
+| Report or package evidence | Rigor Audit | `rigor-audit` | the skill that owns the active output directory |
 
 ## Trusted lane
 
@@ -41,12 +43,12 @@ Trusted-lane skills are for:
 
 Current trusted public skills:
 
-- `ai-research-reproduction`
-- `env-and-assets-bootstrap`
-- `minimal-run-and-audit`
-- `analyze-project`
-- `run-train`
-- `safe-debug`
+- Rigor Reproduce: `ai-research-reproduction`
+- Rigor Setup: `env-and-assets-bootstrap`
+- Rigor Run: `minimal-run-and-audit`
+- Rigor Analyze / Rigor Audit: `analyze-project`
+- Rigor Train: `run-train`
+- Rigor Debug / Rigor Audit: `safe-debug`
 
 Traits:
 
@@ -69,9 +71,9 @@ Explore-lane skills are for:
 
 Current explore public skills:
 
-- `ai-research-explore`
-- `explore-code`
-- `explore-run`
+- Rigor Explore: `ai-research-explore`
+- Rigor Improve: `explore-code`
+- Rigor Improve / Rigor Explore: `explore-run`
 
 The explore lane follows a two-loop rhythm:
 
@@ -110,8 +112,8 @@ Helpers should mostly be:
 
 Current helper skills:
 
-- `repo-intake-and-plan`
-- `paper-context-resolver`
+- Rigor Intake: `repo-intake-and-plan`
+- Rigor Paper Context: `paper-context-resolver`
 
 ## Safety rules
 
