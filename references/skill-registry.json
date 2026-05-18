@@ -40,6 +40,8 @@
           "SUMMARY.md",
           "COMMANDS.md",
           "LOG.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "status.json",
           "PATCHES.md"
         ]
@@ -136,6 +138,8 @@
           "SUMMARY.md",
           "COMMANDS.md",
           "LOG.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "status.json",
           "PATCHES.md"
         ]
@@ -163,6 +167,8 @@
           "SUMMARY.md",
           "COMMANDS.md",
           "LOG.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "status.json"
         ]
       }
@@ -216,6 +222,8 @@
           "EXPERIMENT_MANIFEST.md",
           "EXPERIMENT_LEDGER.md",
           "TRANSPLANT_SMOKE_REPORT.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "TOP_RUNS.md",
           "status.json"
         ]
@@ -244,6 +252,8 @@
         "primary_dir": "explore_outputs",
         "artifacts": [
           "CHANGESET.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "TOP_RUNS.md",
           "status.json"
         ]
@@ -272,6 +282,8 @@
         "primary_dir": "explore_outputs",
         "artifacts": [
           "CHANGESET.md",
+          "SCIENTIFIC_CHANGELOG.md",
+          "COMPARABILITY_REPORT.md",
           "TOP_RUNS.md",
           "status.json"
         ]

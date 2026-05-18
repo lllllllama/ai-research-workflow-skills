@@ -120,12 +120,18 @@ def run_case(writer: Path, temp_root: Path, case: str) -> List[str]:
     summary = (output_dir / "SUMMARY.md").read_text(encoding="utf-8")
     commands = (output_dir / "COMMANDS.md").read_text(encoding="utf-8")
     log = (output_dir / "LOG.md").read_text(encoding="utf-8")
+    scientific_changelog = (output_dir / "SCIENTIFIC_CHANGELOG.md").read_text(encoding="utf-8")
+    comparability_report = (output_dir / "COMPARABILITY_REPORT.md").read_text(encoding="utf-8")
     status = json.loads((output_dir / "status.json").read_text(encoding="utf-8"))
 
     assert_contains(summary, "# Training Run Summary", f"{case}/SUMMARY.md")
     assert_contains(commands, "# Training Commands", f"{case}/COMMANDS.md")
     assert_contains(log, "# Training Log", f"{case}/LOG.md")
     assert_contains(log, "## Human review checkpoints", f"{case}/LOG.md")
+    assert_contains(scientific_changelog, "# Scientific Changelog", f"{case}/SCIENTIFIC_CHANGELOG.md")
+    assert_contains(scientific_changelog, "Training execution was recorded as evidence", f"{case}/SCIENTIFIC_CHANGELOG.md")
+    assert_contains(comparability_report, "# Comparability Report", f"{case}/COMPARABILITY_REPORT.md")
+    assert_contains(comparability_report, "python train.py --config configs/demo.yaml", f"{case}/COMPARABILITY_REPORT.md")
 
     if (output_dir / "PATCHES.md").exists():
         raise AssertionError("run-train should not emit PATCHES.md")
@@ -139,6 +145,8 @@ def run_case(writer: Path, temp_root: Path, case: str) -> List[str]:
         status["max_steps"] == context["max_steps"],
         status["stop_reason"] == context["stop_reason"],
         status["next_safe_action"] == context["next_safe_action"],
+        status["outputs"]["scientific_changelog"] == "train_outputs/SCIENTIFIC_CHANGELOG.md",
+        status["outputs"]["comparability_report"] == "train_outputs/COMPARABILITY_REPORT.md",
     ]
     if not all(checks):
         raise AssertionError(f"run-train status.json lost expected fields for case `{case}`")

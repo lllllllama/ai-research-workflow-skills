@@ -34,6 +34,8 @@ bounded candidate code work without over-prescribing implementation details.
 ## Output expectations
 
 - `explore_outputs/CHANGESET.md`
+- `explore_outputs/SCIENTIFIC_CHANGELOG.md`
+- `explore_outputs/COMPARABILITY_REPORT.md`
 - `explore_outputs/TOP_RUNS.md`
 - `explore_outputs/status.json`
 

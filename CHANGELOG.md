@@ -2,11 +2,11 @@
 
 ## v1.0.0
 
-Initial public release of `ai-research-workflow-skills`.
+Initial public release lineage for what is now `RigorPilot Skills`.
 
 ### Scope
 
-- README-first reproduction of AI paper repositories
+- README-first reproduction of deep learning research repositories
 - one main orchestration skill plus four narrow sub-skills
 - inference and evaluation first
 - training only as startup or partial verification unless explicitly needed
@@ -14,9 +14,10 @@ Initial public release of `ai-research-workflow-skills`.
 
 ### Rename compatibility
 
-- repository brand: ai-research-workflow-skills
-- ai-paper-reproduction renamed to ai-research-reproduction
-- research-explore renamed to ai-research-explore
+- repository brand migrated from `ai-research-workflow-skills` to `RigorPilot Skills`
+- recommended repository slug migrated from `ai-paper-reproduction-skills` to `rigorpilot-skills`
+- `ai-paper-reproduction` remains a compatibility alias for `ai-research-reproduction`
+- `research-explore` remains a compatibility alias for `ai-research-explore`
 
 ### Included skills
 
@@ -55,11 +56,11 @@ Release validation currently includes:
 
 ### Real-repo trials
 
-The main flow has been trialed against a small set of public AI repositories. See [examples/real_repo_trials.md](examples/real_repo_trials.md).
+The main flow has been trialed against a small set of public deep learning research repositories. See [examples/real_repo_trials.md](examples/real_repo_trials.md).
 
 ### Known limits
 
 - environment and asset preparation stays conservative and lightweight
 - multilingual human-readable output currently focuses on English and Chinese
-- the repository is intentionally not a general paper summary, benchmark design, or experiment orchestration system
+- the repository is intentionally not a general paper summary, benchmark design, or open-ended experiment orchestration system
 

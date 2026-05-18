@@ -25,15 +25,15 @@ reproducible evidence, and auditable modifications.
   <img alt="clients" src="https://img.shields.io/badge/clients-Agent%20Skills%20%C2%B7%20Codex%20%C2%B7%20Claude%20Code-6f42c1?style=flat-square">
 </p>
 
-Brand note: this repository is being repositioned as `RigorPilot Skills`. If
-the GitHub repo slug has not been migrated yet, keep using
-`lllllllama/ai-paper-reproduction-skills` for clone and `npx skills add`
-commands until the slug migration is complete.
+Brand note: the project brand is `RigorPilot Skills`; the recommended GitHub
+repository slug is `rigorpilot-skills`. Legacy install paths remain documented
+only as compatibility fallbacks while older clients and bookmarks migrate.
 
 Migration note:
 - Project brand: `ai-research-workflow-skills` -> `RigorPilot Skills`
 - Existing compatible skill slugs remain available.
-- Existing install commands may still use the legacy repository slug until migration is complete.
+- Preferred install source: `lllllllama/rigorpilot-skills`
+- Legacy fallback source: `lllllllama/ai-paper-reproduction-skills`
 - `ai-paper-reproduction` -> `ai-research-reproduction`
 - `research-explore` -> `ai-research-explore`
 
@@ -101,7 +101,7 @@ This repository currently ships:
 - `6` trusted-lane public skills and `3` explore-lane public skills.
 - `4` project-scoped Claude Code command wrappers under `.claude/commands/`.
 - `45` Python scripts, including `43` test scripts with focused `research-explore` regressions and document-structure checks.
-- A third-scenario explore chain that now includes bounded idea-seed generation, explicit idea score breakdowns, atomic idea decomposition, and implementation-fidelity evidence split into planned, heuristic, and observed layers.
+- A RigorPilot Explore chain that now includes bounded idea-seed generation, explicit idea score breakdowns, atomic idea decomposition, and implementation-fidelity evidence split into planned, heuristic, and observed layers.
 - A documented and tested workflow intended to be usable from both Windows PowerShell and Linux shells.
 
 The skills use the open `SKILL.md` layout, so the same repository can be installed into neutral Agent Skills directories as well as Codex and Claude Code. For shared local installs, prefer `~/.agents/skills/` or `./.agents/skills/`. Client-specific installs under `~/.codex/skills/` and `~/.claude/skills/` remain supported.
@@ -124,19 +124,19 @@ For most users, start with `npx`. It is the shortest path and should be enough f
 Install the full repository skill set:
 
 ```bash
-npx skills add lllllllama/ai-paper-reproduction-skills --all
+npx skills add lllllllama/rigorpilot-skills --all
 ```
 
 Install only the trusted main entrypoint:
 
 ```bash
-npx skills add lllllllama/ai-paper-reproduction-skills --skill ai-research-reproduction
+npx skills add lllllllama/rigorpilot-skills --skill ai-research-reproduction
 ```
 
 Install only the exploratory main entrypoint:
 
 ```bash
-npx skills add lllllllama/ai-paper-reproduction-skills --skill ai-research-explore
+npx skills add lllllllama/rigorpilot-skills --skill ai-research-explore
 ```
 
 If you only want to get started quickly, stop here.
@@ -178,13 +178,20 @@ python scripts/install_skills.py --force
 Install the full repository skill set in Codex:
 
 ```bash
-npx skills add lllllllama/ai-paper-reproduction-skills --all
+npx skills add lllllllama/rigorpilot-skills --all
 ```
 
 Install only the trusted reproduction orchestrator in Codex:
 
 ```bash
-npx skills add lllllllama/ai-paper-reproduction-skills --skill ai-research-reproduction
+npx skills add lllllllama/rigorpilot-skills --skill ai-research-reproduction
+```
+
+Legacy GitHub source fallback, if the new slug is not yet available in your
+environment:
+
+```bash
+npx skills add lllllllama/ai-paper-reproduction-skills --all
 ```
 
 Install from a local clone into Codex:
@@ -312,9 +319,9 @@ flowchart TD
     C1 -. helper .-> H2[paper-context-resolver]
 ```
 
-## 🧠 Third-Scenario Explore Flow
+## 🧠 RigorPilot Explore Flow
 
-`ai-research-explore` is optimized for the third scenario: the researcher has
+`ai-research-explore` is the RigorPilot Explore entrypoint when the researcher has
 already frozen the task family, dataset, evaluation method, and provided SOTA
 references, then explicitly authorizes candidate-only exploration on top of
 `current_research`. In RigorPilot terms, this is meaningful and potentially
@@ -332,7 +339,7 @@ flowchart LR
     G --> H[explore_outputs<br/>candidate-only summary]
 ```
 
-Current implementation highlights:
+Current RigorPilot implementation highlights:
 
 - Researcher ideas are preserved, then optionally expanded with bounded synthesized or hybrid seed ideas in `analysis_outputs/IDEA_SEEDS.json`.
 - Idea ranking uses hard gates plus explicit weighted breakdowns in `analysis_outputs/IDEA_SCORES.json`.
@@ -340,7 +347,7 @@ Current implementation highlights:
 - Implementation fidelity distinguishes planned, heuristic, and observed implementation evidence in `analysis_outputs/IMPLEMENTATION_FIDELITY.md` and `analysis_outputs/IMPLEMENTATION_FIDELITY.json`.
 - Executor-observed evidence now comes from emitted `changed_files`, `new_files`, `deleted_files`, and `touched_paths` rather than planned target placeholders.
 
-The two-loop rhythm is a guide, not a never-stop autonomous agent. Exploration
+The two-loop rhythm is a guide, not a never-stop autonomous agent. RigorPilot Explore
 stops at explicit blockers, unclear scientific meaning, exhausted budget,
 missing anchors, or human checkpoints. The explore lane must not claim trusted
 reproduction success, global benchmark completeness, or verified novelty.
@@ -355,7 +362,7 @@ reproduction success, global benchmark completeness, or verified novelty.
 | Trusted | `analyze-project` | Read-only project analysis, model mapping, and risk surfacing |
 | Trusted | `run-train` | Training startup verification, resume handling, bounded monitoring, and training records |
 | Trusted | `safe-debug` | Research-safe debugging: analyze first, patch only after approval |
-| Explore | `ai-research-explore` | Third-scenario exploratory orchestration on top of `current_research` with repo understanding, idea gating, and governed experiments |
+| Explore | `ai-research-explore` | RigorPilot Explore orchestration on top of `current_research` with repo understanding, idea gating, and governed experiments |
 | Explore | `explore-code` | Exploratory code adaptation, transplant, and stitching on isolated branches |
 | Explore | `explore-run` | Small-subset probes, short-cycle trials, and ranked exploratory runs |
 | Helper | `repo-intake-and-plan` | Narrow helper for repo scanning and README command extraction |
@@ -390,17 +397,17 @@ Coverage notes:
 | `analysis_outputs/` | Read-only project analysis plus research map, change map, eval contract, source inventory/support, improvement bank, idea cards, idea seeds, atomic idea map, implementation fidelity, mapping, and resource plan |
 | `debug_outputs/` | Safe debug diagnosis and patch plan |
 | `sources/` | Free-first research lookup records with `sources/records/`, stable names, bounded provider resolution, repo-local extraction, and an auditable index |
-| `explore_outputs/` | Exploratory changeset, idea gate, experiment plan, experiment manifest, split static/runtime smoke reporting, ledger, and ranked run summary |
+| `explore_outputs/` | RigorPilot Explore changeset, idea gate, experiment plan, experiment manifest, scientific changelog, comparability report, split static/runtime smoke reporting, ledger, and ranked run summary |
 
 ## Suggested Research Evidence
 
-These are recommended evidence concepts, not files that every current script
-must generate immediately:
+Two evidence artifacts are now generated by the standardized trusted and
+explore writers; the remaining names are future-compatible evidence concepts:
 
 | Artifact | Meaning |
 |---|---|
-| `SCIENTIFIC_CHANGELOG.md` | Records what changed, why it changed, whether it affects scientific meaning, and whether it remains comparable. |
-| `COMPARABILITY_REPORT.md` | Explains whether results can still be compared to README, paper, baseline, or SOTA references. |
+| `SCIENTIFIC_CHANGELOG.md` | Generated now. Records what changed, why it changed, whether it affects scientific meaning, and whether it remains comparable. |
+| `COMPARABILITY_REPORT.md` | Generated now. Explains whether results can still be compared to README, paper, baseline, or SOTA references. |
 | `REPRODUCIBILITY_NOTES.md` | Records commands, configs, seeds, checkpoints, datasets, environment assumptions, and known gaps. |
 | `NOVELTY_CLAIM.md` | States possible novelty as a hypothesis, supporting evidence, missing evidence, limitations, and required ablations. |
 | `ABLATION_PLAN.md` | Describes what needs to be isolated to validate the candidate change. |
@@ -408,7 +415,7 @@ must generate immediately:
 
 Existing outputs such as `analysis_outputs/`, `sources/`, `explore_outputs/`,
 `repro_outputs/`, `train_outputs/`, and `debug_outputs/` remain compatible.
-RigorPilot may gradually map existing artifacts to these research evidence
+RigorPilot may gradually map more existing artifacts to these research evidence
 concepts.
 
 ## 🧩 Campaign Inputs
@@ -446,7 +453,7 @@ See [skills/ai-research-explore/references/research-campaign-spec.md](skills/ai-
 **Trusted reproduction**
 
 ```text
-Use ai-research-reproduction on this AI repo. Stay README-first, prefer documented inference or evaluation, avoid unnecessary repo changes, and write outputs to repro_outputs/.
+Use ai-research-reproduction on this deep learning research repo. Stay README-first, prefer documented inference or evaluation, avoid unnecessary repo changes, and write outputs to repro_outputs/.
 ```
 
 **Current-research exploration**
@@ -458,7 +465,7 @@ Use ai-research-explore on top of current_research improved-model@branch. Work o
 **Third-scenario campaign exploration**
 
 ```text
-Use ai-research-explore with research_campaign.json. Treat the provided task family, dataset, evaluation source, and SOTA table as frozen inputs, rank the candidate ideas, keep each candidate single-variable, and write governed outputs to analysis_outputs/ and explore_outputs/.
+Use ai-research-explore with research_campaign.json. Treat the provided task family, dataset, evaluation source, and SOTA table as frozen inputs, rank the candidate ideas, keep each candidate single-variable, and write RigorPilot evidence outputs to analysis_outputs/ and explore_outputs/.
 ```
 
 **Read-only analysis**
@@ -573,7 +580,7 @@ python scripts/install_skills.py --client claude --target ./tmp/claude-skills --
 - Trusted reproduction still avoids silent semantic changes.
 - Helper skills remain narrow and are not intended to become public catch-all entry points.
 - Exploratory work must stay isolated from trusted baselines.
-- `ai-research-explore` is a governed third-scenario orchestrator, not an open-ended autonomous research agent.
+- `ai-research-explore` is the governed RigorPilot Explore orchestrator, not an open-ended autonomous research agent.
 
 ## 🧱 Scope
 

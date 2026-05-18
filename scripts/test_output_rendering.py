@@ -100,6 +100,8 @@ def main() -> int:
         summary = (output_dir / "SUMMARY.md").read_text(encoding="utf-8")
         log = (output_dir / "LOG.md").read_text(encoding="utf-8")
         patches = (output_dir / "PATCHES.md").read_text(encoding="utf-8")
+        scientific_changelog = (output_dir / "SCIENTIFIC_CHANGELOG.md").read_text(encoding="utf-8")
+        comparability_report = (output_dir / "COMPARABILITY_REPORT.md").read_text(encoding="utf-8")
         status = json.loads((output_dir / "status.json").read_text(encoding="utf-8"))
 
         assert_contains(commands, "# Commands", "COMMANDS.md")
@@ -119,6 +121,12 @@ def main() -> int:
         assert_contains(patches, "Highest patch risk", "PATCHES.md")
         assert_contains(patches, "configs/demo.yaml", "PATCHES.md")
         assert_contains(patches, "documented eval command", "PATCHES.md")
+        assert_contains(scientific_changelog, "# Scientific Changelog", "SCIENTIFIC_CHANGELOG.md")
+        assert_contains(scientific_changelog, "Engineering fixes", "SCIENTIFIC_CHANGELOG.md")
+        assert_contains(scientific_changelog, "configs/demo.yaml", "SCIENTIFIC_CHANGELOG.md")
+        assert_contains(comparability_report, "# Comparability Report", "COMPARABILITY_REPORT.md")
+        assert_contains(comparability_report, "README documented command", "COMPARABILITY_REPORT.md")
+        assert_contains(comparability_report, "readme_fidelity=clarified", "COMPARABILITY_REPORT.md")
 
         if status["user_language"] != "en":
             raise AssertionError("status.json lost the expected user_language value")
@@ -142,9 +150,13 @@ def main() -> int:
             raise AssertionError("status.json lost the expected artifact_provenance value")
         if status["verified_commit_count"] != 1:
             raise AssertionError("status.json lost the expected verified_commit_count value")
+        if status["outputs"]["scientific_changelog"] != "repro_outputs/SCIENTIFIC_CHANGELOG.md":
+            raise AssertionError("status.json lost the scientific changelog output path")
+        if status["outputs"]["comparability_report"] != "repro_outputs/COMPARABILITY_REPORT.md":
+            raise AssertionError("status.json lost the comparability report output path")
 
         print("ok: True")
-        print("checks: 23")
+        print("checks: 31")
         print("failures: 0")
         return 0
     finally:

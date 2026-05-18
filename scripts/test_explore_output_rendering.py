@@ -328,6 +328,8 @@ def main() -> int:
 
             changeset = (output_dir / "CHANGESET.md").read_text(encoding="utf-8")
             top_runs = (output_dir / "TOP_RUNS.md").read_text(encoding="utf-8")
+            scientific_changelog = (output_dir / "SCIENTIFIC_CHANGELOG.md").read_text(encoding="utf-8")
+            comparability_report = (output_dir / "COMPARABILITY_REPORT.md").read_text(encoding="utf-8")
             status = json.loads((output_dir / "status.json").read_text(encoding="utf-8"))
             if mode == "research":
                 for rel in ["IDEA_GATE.md", "EXPERIMENT_PLAN.md", "EXPERIMENT_MANIFEST.md", "EXPERIMENT_LEDGER.md", "TRANSPLANT_SMOKE_REPORT.md"]:
@@ -348,6 +350,10 @@ def main() -> int:
             assert_contains(top_runs, "variant-001", f"{mode}/TOP_RUNS.md")
             assert_contains(top_runs, "val_loss", f"{mode}/TOP_RUNS.md")
             assert_contains(top_runs, "cost, success_rate, expected_gain", f"{mode}/TOP_RUNS.md")
+            assert_contains(scientific_changelog, "# Scientific Changelog", f"{mode}/SCIENTIFIC_CHANGELOG.md")
+            assert_contains(scientific_changelog, "Candidate-only", f"{mode}/SCIENTIFIC_CHANGELOG.md")
+            assert_contains(comparability_report, "# Comparability Report", f"{mode}/COMPARABILITY_REPORT.md")
+            assert_contains(comparability_report, "Exploratory results are candidate-only", f"{mode}/COMPARABILITY_REPORT.md")
 
             if status["experiment_branch"] != "exp/lora-demo":
                 raise AssertionError("explore status lost experiment_branch")
@@ -371,6 +377,10 @@ def main() -> int:
                 raise AssertionError("explore status lost variant_budget")
             if status["selection_policy"]["factors"] != ["cost", "success_rate", "expected_gain"]:
                 raise AssertionError("explore status lost selection_policy")
+            if status["outputs"]["scientific_changelog"] != "explore_outputs/SCIENTIFIC_CHANGELOG.md":
+                raise AssertionError("explore status lost scientific changelog output")
+            if status["outputs"]["comparability_report"] != "explore_outputs/COMPARABILITY_REPORT.md":
+                raise AssertionError("explore status lost comparability report output")
             if not status["helper_stage_trace"]:
                 raise AssertionError("explore status lost helper stage trace")
             if mode == "research" and status["sota_claim_state"] != "candidate-exceeds-provided-sota":
@@ -405,7 +415,7 @@ def main() -> int:
                 raise AssertionError("research explore status lost fidelity summary")
 
         print("ok: True")
-        print("checks: 47")
+        print("checks: 55")
         print("failures: 0")
         return 0
     finally:

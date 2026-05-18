@@ -1,6 +1,6 @@
 # Idea Evaluation Framework
 
-`ai-research-explore` uses a bounded, candidate-only evaluation scheme for third-scenario idea ranking.
+`ai-research-explore` uses a bounded, candidate-only evaluation scheme for RigorPilot Explore idea ranking.
 
 ## Hard Gates
 

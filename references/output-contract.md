@@ -18,6 +18,7 @@ Trusted output traits:
 - stable machine-readable English keys
 - concise human-readable summaries
 - assumptions, deviations, and blockers recorded explicitly
+- `SCIENTIFIC_CHANGELOG.md` and `COMPARABILITY_REPORT.md` emitted by the trusted run writers
 - next safe action recorded when work is partial or blocked
 
 ## Explore outputs
@@ -35,6 +36,7 @@ Explore output traits:
 - canonical `explore_context` recorded with `current_research`, `experiment_branch`, and explicit authorization
 - campaign metadata recorded when `ai-research-explore` is used in the third scenario
 - `eval_contract`, `baseline_gate`, `idea_gate`, `selected_idea`, `experiment_manifest`, and `experiment_ledger` recorded for campaign-style runs
+- `SCIENTIFIC_CHANGELOG.md` and `COMPARABILITY_REPORT.md` recorded for candidate-only scientific meaning and comparability review
 - `analysis_artifacts`, `lookup_records`, `idea_cards`, `improvement_bank`, `idea_seeds`, `target_location_map`, `minimal_patch_plan`, `resource_plan`, `atomic_idea_map`, `implementation_fidelity`, and `smoke_report` recorded when `ai-research-explore` runs the bounded campaign pipeline
 - `source_inventory` and `source_support` recorded when `ai-research-explore` runs the free-first research lookup pass
 - `static_smoke` and `runtime_smoke` recorded separately when the exploratory bundle includes transplant or execution checks
@@ -58,6 +60,8 @@ Expected `ai-research-explore` artifacts may now include:
 - `explore_outputs/EXPERIMENT_MANIFEST.md`
 - `explore_outputs/EXPERIMENT_LEDGER.md`
 - `explore_outputs/TRANSPLANT_SMOKE_REPORT.md`
+- `explore_outputs/SCIENTIFIC_CHANGELOG.md`
+- `explore_outputs/COMPARABILITY_REPORT.md`
 - `explore_outputs/TOP_RUNS.md`
 - `explore_outputs/status.json`
 

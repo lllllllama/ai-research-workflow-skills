@@ -71,7 +71,9 @@ human checkpoint.
    requires real execution evidence.
 9. Write candidate-only outputs to `analysis_outputs/`, `sources/`, and
    `explore_outputs/` as appropriate; never present exploratory gains as trusted
-   reproduction success.
+   reproduction success. Include `SCIENTIFIC_CHANGELOG.md` and
+   `COMPARABILITY_REPORT.md` for candidate scientific meaning and comparison
+   boundaries.
 
 ## Ranking and Evidence
 
@@ -109,7 +111,7 @@ schema and artifact expectations.
 - Load `references/ai-research-explore-policy.md` for lane safety and candidate
   semantics.
 - Load `references/research-campaign-spec.md` only when a campaign file is
-  present or the user asks for third-scenario campaign governance.
+  present or the user asks for RigorPilot Explore campaign governance.
 - Load `../../references/explore-variant-spec.md` for run-level variant matrix
   details.
 - Load `../../references/research-rigor-principles.md` before making novelty,

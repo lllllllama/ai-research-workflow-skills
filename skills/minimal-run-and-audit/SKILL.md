@@ -45,6 +45,8 @@ evidence auditable without turning every command into a rigid protocol.
 
 - execution result summary
 - standardized `repro_outputs/` files
+- `SCIENTIFIC_CHANGELOG.md` for changed scientific meaning and evidence status
+- `COMPARABILITY_REPORT.md` for README/paper/baseline comparability
 - clear distinction between verified, partial, and blocked states
 - `PATCHES.md` when repo files changed
 

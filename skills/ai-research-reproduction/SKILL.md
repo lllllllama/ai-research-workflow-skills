@@ -7,7 +7,7 @@ description: RigorPilot reproduce-mode orchestrator for README-first deep learni
 
 ## Purpose
 
-Use this as the trusted-lane orchestrator for README-first AI repository
+Use this as the RigorPilot Reproduce orchestrator for README-first deep learning repository
 reproduction. The skill guides the agent toward a minimal trustworthy run with
 auditable evidence; it should not micromanage implementation details that the
 model can infer from the repository. Reproduction is not "make it run by
@@ -96,6 +96,8 @@ Always target `repro_outputs/`:
 SUMMARY.md
 COMMANDS.md
 LOG.md
+SCIENTIFIC_CHANGELOG.md
+COMPARABILITY_REPORT.md
 status.json
 PATCHES.md   # only if patches were applied
 ```
@@ -106,6 +108,8 @@ Use the templates under `assets/` and the field rules in
 - Put the shortest high-value summary in `SUMMARY.md`.
 - Put copyable commands in `COMMANDS.md`.
 - Put process evidence, assumptions, failures, and decisions in `LOG.md`.
+- Put scientific meaning and change effects in `SCIENTIFIC_CHANGELOG.md`.
+- Put comparison anchors and protocol deviations in `COMPARABILITY_REPORT.md`.
 - Put durable machine-readable state in `status.json`.
 - Put branch, commit, validation, and README-fidelity impact in `PATCHES.md` when needed.
 - Distinguish verified facts from inferred guesses.

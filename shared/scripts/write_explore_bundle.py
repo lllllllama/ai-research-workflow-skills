@@ -507,12 +507,149 @@ def write_transplant_smoke_report(output_dir: Path, context: Dict[str, Any]) -> 
     (output_dir / "TRANSPLANT_SMOKE_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
 
 
+def explore_comparability_status(context: Dict[str, Any], mode: str) -> str:
+    explicit = context.get("comparability_status")
+    if explicit:
+        return str(explicit)
+    if context.get("sota_claim_state") not in {None, "", "not-applicable", "candidate-only"}:
+        return "candidate-only"
+    if mode == "research" and context.get("eval_contract"):
+        return "anchored-to-frozen-eval"
+    return "candidate-only"
+
+
+def write_scientific_changelog(output_dir: Path, context: Dict[str, Any], mode: str) -> None:
+    manifest = context.get("experiment_manifest", {})
+    selected = context.get("selected_idea") or context.get("idea_gate", {}).get("selected_idea") or {}
+    lines = [
+        "# Scientific Changelog",
+        "",
+        f"- Mode: `{mode}`",
+        f"- Current research: `{current_research_value(context)}`",
+        f"- Experiment branch: `{context.get('experiment_branch', context.get('explore_context', {}).get('experiment_branch', 'unknown'))}`",
+        f"- Status: `{context.get('status', 'planned')}`",
+        f"- Comparability status: `{explore_comparability_status(context, mode)}`",
+        f"- Candidate-only: `true`",
+        "",
+        "## Candidate Change",
+        "",
+        bullets(
+            context.get("changes_summary", [])
+            or [
+                f"Selected idea: {selected.get('summary', 'none')}",
+                f"Target component: {selected.get('target_component', 'unspecified')}",
+                f"Change scope: {selected.get('change_scope', 'unspecified')}",
+            ]
+        ),
+        "",
+        "## Changed Files",
+        "",
+        bullets(
+            manifest.get("observed_changed_files")
+            or manifest.get("planned_changed_files")
+            or context.get("candidate_edit_targets", [])
+        ),
+        "",
+        "## Why It May Matter",
+        "",
+        bullets(
+            context.get("candidate_hypotheses", [])
+            or [manifest.get("hypothesis", "Novelty and significance remain hypotheses until supported.")]
+        ),
+        "",
+        "## Scientific Meaning",
+        "",
+        bullets(
+            context.get("scientific_meaning_notes", [])
+            or [
+                "This is exploratory evidence, not trusted reproduction success.",
+                "Engineering fixes and candidate changes are not method contributions until supported by fair comparison and ablation evidence.",
+            ]
+        ),
+        "",
+        "## Evidence Status",
+        "",
+        bullets(
+            [
+                f"baseline_gate={context.get('baseline_gate', {}).get('decision', 'not-configured')}",
+                f"short_run_gate={context.get('short_run_gate', {}).get('status', 'not-run')}",
+                f"static_smoke={context.get('static_smoke', {}).get('status', 'not-run')}",
+                f"runtime_smoke={context.get('runtime_smoke', {}).get('status', 'not-run')}",
+                f"human_checkpoint_state={context.get('human_checkpoint_state', 'not-applicable')}",
+            ]
+        ),
+        "",
+    ]
+    (output_dir / "SCIENTIFIC_CHANGELOG.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_comparability_report(output_dir: Path, context: Dict[str, Any], mode: str) -> None:
+    eval_contract = context.get("eval_contract", {})
+    metric_policy = context.get("metric_policy", {})
+    lines = [
+        "# Comparability Report",
+        "",
+        f"- Mode: `{mode}`",
+        f"- Current research: `{current_research_value(context)}`",
+        f"- Experiment branch: `{context.get('experiment_branch', context.get('explore_context', {}).get('experiment_branch', 'unknown'))}`",
+        f"- Comparability status: `{explore_comparability_status(context, mode)}`",
+        f"- SOTA claim state: `{context.get('sota_claim_state', 'not-applicable')}`",
+        f"- Trusted promotion candidate: `{context.get('trusted_promote_candidate', False)}`",
+        "",
+        "## Comparison Anchors",
+        "",
+        bullets(
+            [
+                f"current_research={current_research_value(context)}",
+                f"task_family={eval_contract.get('task_family', context.get('campaign', {}).get('task_family', 'not-recorded'))}",
+                f"dataset={eval_contract.get('dataset', 'not-recorded')}",
+                f"benchmark={eval_contract.get('benchmark', 'not-recorded')}",
+                f"evaluation_command={eval_contract.get('evaluation_command', 'not-recorded')}",
+                f"primary_metric={metric_policy.get('primary_metric', eval_contract.get('primary_metric', 'not-recorded'))}",
+                f"metric_goal={metric_policy.get('metric_goal', eval_contract.get('metric_goal', 'not-recorded'))}",
+            ]
+        ),
+        "",
+        "## Candidate Boundary",
+        "",
+        bullets(
+            [
+                "Exploratory results are candidate-only.",
+                "Provided SOTA references are treated as frozen comparison inputs, not proof of global completeness.",
+                "Direct comparability depends on unchanged dataset, preprocessing, metric, checkpoint, and evaluation conditions.",
+            ]
+        ),
+        "",
+        "## Known Risks",
+        "",
+        bullets(
+            context.get("comparability_risks", [])
+            or [
+                f"eval_risk={context.get('selected_idea', {}).get('eval_risk', 'not-recorded')}",
+                f"patch_surface={context.get('patch_surface_summary', {}).get('estimated_patch_surface', 'not-recorded')}",
+                f"dependency_drag={context.get('selected_idea', {}).get('dependency_drag', 'not-recorded')}",
+            ]
+        ),
+        "",
+        "## Interpretation",
+        "",
+        context.get(
+            "comparability_interpretation",
+            "Do not promote exploratory gains to trusted baseline or SOTA claims without reproduction, ablation, and fair-comparison evidence.",
+        ),
+        "",
+    ]
+    (output_dir / "COMPARABILITY_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
+
+
 def write_status(output_dir: Path, context: Dict[str, Any], mode: str) -> None:
     explore_context = explore_context_payload(context)
     current_research = explore_context["current_research"]
     outputs = {
         "changeset": "explore_outputs/CHANGESET.md",
         "top_runs": "explore_outputs/TOP_RUNS.md",
+        "scientific_changelog": "explore_outputs/SCIENTIFIC_CHANGELOG.md",
+        "comparability_report": "explore_outputs/COMPARABILITY_REPORT.md",
         "status": "explore_outputs/status.json",
     }
     if mode == "research":
@@ -610,6 +747,8 @@ def write_bundle(mode: str, output_dir: Path, context: Dict[str, Any]) -> None:
     output_dir.mkdir(parents=True, exist_ok=True)
     write_changeset(output_dir, context, mode)
     write_top_runs(output_dir, context, mode)
+    write_scientific_changelog(output_dir, context, mode)
+    write_comparability_report(output_dir, context, mode)
     if mode == "research":
         write_idea_gate(output_dir, context)
         write_experiment_plan(output_dir, context)

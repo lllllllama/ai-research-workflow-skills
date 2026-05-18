@@ -2,7 +2,7 @@
 
 ## Default preference
 
-Prefer conda or Anaconda-style setup for AI paper repositories because it is common in research code and helps isolate conflicting dependencies.
+Prefer conda or Anaconda-style setup for deep learning research repositories because it is common in research code and helps isolate conflicting dependencies.
 
 ## Order of trust
 

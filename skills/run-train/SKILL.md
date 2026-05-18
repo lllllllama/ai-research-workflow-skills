@@ -44,6 +44,8 @@ to the model.
 - `train_outputs/SUMMARY.md`
 - `train_outputs/COMMANDS.md`
 - `train_outputs/LOG.md`
+- `train_outputs/SCIENTIFIC_CHANGELOG.md`
+- `train_outputs/COMPARABILITY_REPORT.md`
 - `train_outputs/status.json`
 
 ## Notes

@@ -240,6 +240,8 @@ def write_repro_status(output_dir: Path, context: Dict[str, Any]) -> None:
             "summary": "repro_outputs/SUMMARY.md",
             "commands": "repro_outputs/COMMANDS.md",
             "log": "repro_outputs/LOG.md",
+            "scientific_changelog": "repro_outputs/SCIENTIFIC_CHANGELOG.md",
+            "comparability_report": "repro_outputs/COMPARABILITY_REPORT.md",
             "status": "repro_outputs/status.json",
             "patches": "repro_outputs/PATCHES.md" if context.get("patches_applied") else None,
         },
@@ -286,6 +288,143 @@ def write_repro_patches(output_dir: Path, context: Dict[str, Any]) -> None:
         ]
     )
     (output_dir / "PATCHES.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def meaningful_deviations(context: Dict[str, Any]) -> List[str]:
+    deviations = []
+    for item in context.get("protocol_deviations", []):
+        text = str(item)
+        lowered = text.lower().strip()
+        if lowered == "none" or "no protocol deviation" in lowered:
+            continue
+        deviations.append(text)
+    return deviations
+
+
+def comparability_status(context: Dict[str, Any], mode: str) -> str:
+    explicit = context.get("comparability_status")
+    if explicit:
+        return str(explicit)
+    if meaningful_deviations(context):
+        return "needs-review"
+    if context.get("patches_applied") and context.get("readme_fidelity") not in {None, "", "preserved"}:
+        return "qualified"
+    if mode == "train" and context.get("run_mode") not in {None, "", "startup_verification"}:
+        return "qualified"
+    return "preserved"
+
+
+def write_scientific_changelog(output_dir: Path, context: Dict[str, Any], mode: str) -> None:
+    lines = [
+        "# Scientific Changelog",
+        "",
+        f"- Mode: `{mode}`",
+        f"- Target repo: `{context.get('target_repo', 'unknown')}`",
+        f"- Selected goal: `{context.get('selected_goal', 'unknown')}`",
+        f"- Overall status: `{context.get('status', 'unknown')}`",
+        f"- Comparability status: `{comparability_status(context, mode)}`",
+        "",
+        "## Recorded Changes",
+        "",
+    ]
+    commits = context.get("verified_commits", [])
+    if commits:
+        for item in commits:
+            lines.extend(render_commit(item))
+            lines.append(f"- Scientific meaning effect: `{item.get('scientific_meaning_effect', 'not-assessed')}`")
+            lines.append(f"- Comparability effect: `{item.get('comparability_effect', item.get('readme_fidelity_effect', 'not-assessed'))}`")
+            lines.append("")
+    elif mode == "train":
+        lines.extend(
+            [
+                "- Training execution was recorded as evidence; no repository file change was recorded by this writer.",
+                f"- Run mode: `{context.get('run_mode', 'startup_verification')}`",
+                f"- Dataset: `{context.get('dataset', 'unknown')}`",
+                f"- Checkpoint source: `{context.get('checkpoint_source', 'none')}`",
+                "",
+            ]
+        )
+    else:
+        lines.extend(["- No repository file change was recorded by this writer.", ""])
+
+    lines.extend(
+        [
+            "## Why The Changes Matter",
+            "",
+            bullets(context.get("patch_notes", []) or context.get("command_notes", []) or context.get("notes", [])),
+            "",
+            "## Scientific Meaning",
+            "",
+            bullets(
+                context.get("scientific_meaning_notes", [])
+                or [
+                    "Engineering fixes and execution records are not method contributions unless separate evidence supports that claim."
+                ]
+            ),
+            "",
+            "## Evidence",
+            "",
+            bullets(context.get("evidence", [])),
+            "",
+        ]
+    )
+    (output_dir / "SCIENTIFIC_CHANGELOG.md").write_text("\n".join(lines), encoding="utf-8")
+
+
+def write_comparability_report(output_dir: Path, context: Dict[str, Any], mode: str) -> None:
+    deviations = meaningful_deviations(context)
+    lines = [
+        "# Comparability Report",
+        "",
+        f"- Mode: `{mode}`",
+        f"- Target repo: `{context.get('target_repo', 'unknown')}`",
+        f"- Comparability status: `{comparability_status(context, mode)}`",
+        f"- README-first: `{context.get('readme_first', mode == 'repro')}`",
+        f"- Documented command: `{context.get('documented_command', 'None extracted')}`",
+        f"- Command source: `{context.get('documented_command_source', 'none')}`",
+        f"- Command section: `{context.get('documented_command_section') or 'none'}`",
+        "",
+        "## Comparison Anchors",
+        "",
+        bullets(
+            context.get("comparison_anchors", [])
+            or [
+                "README documented command",
+                "repository files used to interpret the README",
+                "paper or baseline references only when explicitly resolved",
+            ]
+        ),
+        "",
+        "## Protocol Deviations",
+        "",
+        bullets(deviations),
+        "",
+        "## Patch And Execution Effects",
+        "",
+        bullets(
+            [
+                f"patches_applied={context.get('patches_applied', False)}",
+                f"readme_fidelity={context.get('readme_fidelity', 'preserved')}",
+                f"highest_patch_risk={context.get('highest_patch_risk', 'none')}",
+                f"run_mode={context.get('run_mode', 'not-applicable')}",
+                f"dataset={context.get('dataset', 'not-recorded')}",
+                f"checkpoint_source={context.get('checkpoint_source', 'not-recorded')}",
+            ]
+        ),
+        "",
+        "## Assumptions And Gaps",
+        "",
+        bullets(context.get("assumptions", [])),
+        "",
+        "## Interpretation",
+        "",
+        context.get(
+            "comparability_interpretation",
+            "Treat results as directly comparable only when the documented command, data, preprocessing, checkpoint, metric, and baseline conditions remain aligned.",
+        ),
+        "",
+    ]
+    (output_dir / "COMPARABILITY_REPORT.md").write_text("\n".join(lines), encoding="utf-8")
 
 
 def write_train_summary(output_dir: Path, context: Dict[str, Any]) -> None:
@@ -456,6 +595,8 @@ def write_train_status(output_dir: Path, context: Dict[str, Any]) -> None:
             "summary": "train_outputs/SUMMARY.md",
             "commands": "train_outputs/COMMANDS.md",
             "log": "train_outputs/LOG.md",
+            "scientific_changelog": "train_outputs/SCIENTIFIC_CHANGELOG.md",
+            "comparability_report": "train_outputs/COMPARABILITY_REPORT.md",
             "status": "train_outputs/status.json",
         },
         "notes": context.get("notes", []),
@@ -469,6 +610,8 @@ def write_bundle(mode: str, output_dir: Path, context: Dict[str, Any]) -> None:
         write_repro_summary(output_dir, context)
         write_repro_commands(output_dir, context)
         write_repro_log(output_dir, context)
+        write_scientific_changelog(output_dir, context, mode)
+        write_comparability_report(output_dir, context, mode)
         write_repro_status(output_dir, context)
         write_repro_patches(output_dir, context)
         return
@@ -477,6 +620,8 @@ def write_bundle(mode: str, output_dir: Path, context: Dict[str, Any]) -> None:
         write_train_summary(output_dir, context)
         write_train_commands(output_dir, context)
         write_train_log(output_dir, context)
+        write_scientific_changelog(output_dir, context, mode)
+        write_comparability_report(output_dir, context, mode)
         write_train_status(output_dir, context)
         return
 
